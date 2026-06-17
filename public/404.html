@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 -- Page Not Found | Nandu</title>
+  <!-- Google Fonts: Kanit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #0C0C0C;
+      color: #D7E2EA;
+      font-family: 'Kanit', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+    /* Glow circles background */
+    .glow-circle {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: 1;
+      opacity: 0.15;
+    }
+    .circle-1 {
+      width: 400px;
+      height: 400px;
+      background: #B600A8;
+      top: 10%;
+      left: 10%;
+    }
+    .circle-2 {
+      width: 500px;
+      height: 500px;
+      background: #7621B0;
+      bottom: 10%;
+      right: 10%;
+    }
+    /* Main Content Container */
+    .container {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 20px;
+    }
+    .error-code {
+      font-size: clamp(6rem, 20vw, 15rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.05em;
+      background: linear-gradient(180deg, #B600A8 0%, #7621B0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: pulse-glow 3s infinite alternate;
+      margin-bottom: 20px;
+    }
+    .title {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 15px;
+      color: #D7E2EA;
+    }
+    .subtitle {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      font-weight: 300;
+      color: rgba(215, 226, 234, 0.6);
+      max-width: 450px;
+      margin: 0 auto 40px auto;
+      line-height: 1.6;
+    }
+    /* Action Button */
+    .home-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 40px;
+      border-radius: 50px;
+      border: 2px solid #B600A8;
+      background: rgba(182, 0, 168, 0.05);
+      color: #D7E2EA;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      font-size: 13px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(182, 0, 168, 0.1);
+    }
+    .home-btn:hover {
+      background: #B600A8;
+      color: #ffffff;
+      box-shadow: 0 0 30px rgba(182, 0, 168, 0.35);
+      transform: scale(1.05);
+    }
+    @keyframes pulse-glow {
+      0% {
+        filter: drop-shadow(0 0 10px rgba(182, 0, 168, 0.1));
+      }
+      100% {
+        filter: drop-shadow(0 0 30px rgba(182, 0, 168, 0.4));
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Ambient background glow elements -->
+  <div class="glow-circle circle-1"></div>
+  <div class="glow-circle circle-2"></div>
+
+  <!-- Error display layout -->
+  <div class="container">
+    <h1 class="error-code">404</h1>
+    <h2 class="title">Lost in Space</h2>
+    <p class="subtitle">The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+    <a href="/" class="home-btn">Return Home</a>
+  </div>
+</body>
+</html>

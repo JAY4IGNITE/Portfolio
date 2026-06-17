@@ -1,0 +1,212 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .section-panel {
+    @apply -mt-10 sm:-mt-12 md:-mt-14 rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] relative z-10;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Lenis smooth scrolling — handled in JS, native CSS smooth conflicts */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+html, body {
+  overflow-x: clip;
+  max-width: 100vw;
+}
+
+html,
+body,
+#root {
+  background: #0C0C0C;
+  font-family: 'Kanit', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom cursors - only on devices that support hover */
+@media (hover: hover) {
+  *,
+  *::before,
+  *::after {
+    cursor: url('/assets/custom-cursor.svg') 6 6, auto !important;
+  }
+
+  a, button, [role="button"], label[for],
+  .cursor-pointer, summary {
+    cursor: url('/assets/cursor-pointer.svg') 10 4, pointer !important;
+  }
+
+  input[type="text"], input[type="email"], input[type="tel"],
+  input[type="search"], input[type="url"], input[type="password"],
+  textarea, [contenteditable="true"] {
+    cursor: url('/assets/cursor-text.svg') 16 16, text !important;
+  }
+
+  .cursor-grab, .grab-scroll {
+    cursor: url('/assets/cursor-grab.svg') 16 16, grab !important;
+  }
+
+  .cursor-grab:active, .grab-scroll:active {
+    cursor: url('/assets/cursor-grabbing.svg') 16 16, grabbing !important;
+  }
+}
+
+/* Hide scrollbar for horizontal scroll areas */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+
+/* ── Parallax system ────────────────────────────────── */
+.parallax-perspective {
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+}
+
+.parallax-layer {
+  will-change: transform;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* ── WebGL reveal canvas ────────────────────────────── */
+.webgl-reveal-canvas canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none;
+  object-fit: contain;
+  object-position: bottom;
+}
+
+/* ── Hero heading ───────────────────────────────────── */
+.hero-heading {
+  background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 4px 30px rgba(182, 0, 168, 0.08));
+}
+
+.hero-heading-split {
+  background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 4px 30px rgba(182, 0, 168, 0.08));
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* ── Background atmosphere text ─────────────────────── */
+.parallax-bg-text {
+  background: linear-gradient(180deg, rgba(100, 105, 115, 0.12) 0%, rgba(100, 105, 115, 0.03) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ── Floating orb animations ────────────────────────── */
+@keyframes orb-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25%      { transform: translate(12px, -18px) scale(1.05); }
+  50%      { transform: translate(-8px, -30px) scale(0.97); }
+  75%      { transform: translate(15px, -10px) scale(1.03); }
+}
+
+@keyframes orb-pulse {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 0.85; }
+}
+
+@keyframes orb-rotate {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.floating-orb {
+  animation: orb-drift 18s ease-in-out infinite, orb-pulse 6s ease-in-out infinite;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+.floating-shape {
+  animation: orb-rotate 40s linear infinite;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0C0C0C;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Marquee animations — GPU-accelerated infinite scroll */
+@keyframes marquee-right {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-left {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Accessibility — respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Pause marquee animation when hovering over the row */
+.marquee-row:hover > div {
+  animation-play-state: paused !important;
+}
