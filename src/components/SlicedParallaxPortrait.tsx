@@ -53,24 +53,24 @@ export default function SlicedParallaxPortrait({ scrollYProgress }: Props) {
   // Parallax fades to 0 as section collapses (scroll > 0.3)
   const intensity = useTransform(progress, [0, 0.3], [1, 0]);
 
-  // Portrait rises on scroll
-  const portraitY = useTransform(progress, [0, 1], ['0%', '-20%']);
+  // Portrait stays fixed in place (no scroll movement)
+  const portraitY = useTransform(progress, [0, 1], ['0%', '0%']);
 
   // Portrait fades out as section collapses
   const portraitOpacity = useTransform(progress, [0.35, 0.65], [1, 0]);
 
-  // Scroll-driven scale-up
-  const portraitScale = useTransform(progress, [0, 0.45], [0.92, 1.15]);
+  // Portrait scale stays constant (no scroll scaling to prevent cropping)
+  const portraitScale = useTransform(progress, [0, 1], [1, 1]);
 
   // 3D mouse tilt — holographic card effect
   const tiltX = useTransform(() => sy.get() * -3 * intensity.get());
   const tiltY = useTransform(() => sx.get() * 3 * intensity.get());
 
-  // Parallax offsets for WebGL shader (slow = base, fast = reveal)
-  const slowX = useTransform(() => sx.get() * 10 * intensity.get());
-  const slowY = useTransform(() => sy.get() * 10 * intensity.get());
-  const fastX = useTransform(() => sx.get() * 40 * intensity.get());
-  const fastY = useTransform(() => sy.get() * 40 * intensity.get());
+  // Parallax offsets for WebGL shader (subtle to keep overlay aligned)
+  const slowX = useTransform(() => sx.get() * 5 * intensity.get());
+  const slowY = useTransform(() => sy.get() * 5 * intensity.get());
+  const fastX = useTransform(() => sx.get() * 8 * intensity.get());
+  const fastY = useTransform(() => sy.get() * 8 * intensity.get());
 
   // Mid-speed parallax for rim/edge highlights
   const midX = useTransform(() => sx.get() * 24 * intensity.get());
@@ -97,17 +97,17 @@ export default function SlicedParallaxPortrait({ scrollYProgress }: Props) {
     setIsTouchDevice(!window.matchMedia('(hover: hover)').matches);
   }, []);
 
-  const baseSrc = `${import.meta.env.BASE_URL}assets/Nandu.png`;
-  const revealSrc = `${import.meta.env.BASE_URL}assets/Nandu-2.png`;
+  const baseSrc = `${import.meta.env.BASE_URL}assets/Krishna.png`;
+  const revealSrc = `${import.meta.env.BASE_URL}assets/Krishna-2.png`;
 
   return (
     <motion.div
-      className="relative flex justify-center items-end h-[70vh] sm:h-[85vh] md:h-[100vh] lg:h-[115vh] xl:h-[125vh] w-full max-w-4xl mx-auto pointer-events-auto parallax-perspective"
+      className="relative flex justify-center items-center h-[70vh] sm:h-[85vh] md:h-[100vh] lg:h-[115vh] xl:h-[125vh] w-full max-w-4xl mx-auto pointer-events-auto parallax-perspective"
       style={{
         y: portraitY,
         opacity: portraitOpacity,
         scale: portraitScale,
-        transformOrigin: 'bottom center',
+        transformOrigin: 'center center',
       }}
     >
       {/* ── 3D tilt wrapper ──────────────────────────────────────────── */}
@@ -121,7 +121,7 @@ export default function SlicedParallaxPortrait({ scrollYProgress }: Props) {
       >
         {/* ── Layer 0: deep shadow / glow (slowest) ──────────────────── */}
         <motion.div
-          className="absolute inset-x-0 bottom-0 h-2/3 pointer-events-none z-0"
+          className="absolute inset-0 pointer-events-none z-0"
           style={{
             x: slowX,
             y: slowY,
@@ -137,8 +137,8 @@ export default function SlicedParallaxPortrait({ scrollYProgress }: Props) {
           // Touch devices: just show the colour portrait directly
           <img
             src={revealSrc}
-            alt="Nandu"
-            className="absolute inset-x-0 bottom-0 w-full h-full object-contain object-bottom select-none z-10"
+            alt="Krishna"
+            className="absolute inset-0 w-full h-full object-contain object-center select-none z-10"
             draggable={false}
             loading="lazy"
           />
@@ -146,7 +146,7 @@ export default function SlicedParallaxPortrait({ scrollYProgress }: Props) {
           <WebGLImageReveal
             baseSrc={baseSrc}
             revealSrc={revealSrc}
-            className="absolute inset-x-0 bottom-0 w-full h-full z-10"
+            className="absolute inset-0 w-full h-full z-10"
             offsetBaseX={parallaxOffsets.slowX}
             offsetBaseY={parallaxOffsets.slowY}
             offsetRevealX={parallaxOffsets.fastX}
@@ -156,7 +156,7 @@ export default function SlicedParallaxPortrait({ scrollYProgress }: Props) {
 
         {/* ── Layer 3: highlight rim (medium speed) ──────────────────── */}
         <motion.div
-          className="absolute inset-x-0 bottom-0 w-full h-full z-30 pointer-events-none"
+          className="absolute inset-0 w-full h-full z-30 pointer-events-none"
           style={{
             x: midX,
             y: midY,
@@ -166,7 +166,7 @@ export default function SlicedParallaxPortrait({ scrollYProgress }: Props) {
 
         {/* ── Layer 4: edge highlights that react to mouse ───────────── */}
         <motion.div
-          className="absolute inset-x-0 bottom-0 w-full h-full z-[25] pointer-events-none"
+          className="absolute inset-0 w-full h-full z-[25] pointer-events-none"
           style={{
             x: midX,
             y: midY,

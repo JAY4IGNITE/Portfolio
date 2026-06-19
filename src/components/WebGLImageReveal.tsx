@@ -97,15 +97,14 @@ const COMPOSITE_FRAGMENT = /* glsl */ `
   uniform float uContainerAspect; // container width / height
   varying vec2 vUv;
 
-  // Remap UVs to implement object-fit:contain + object-position:bottom
-  vec2 containBottomUV(vec2 uv) {
+  // Remap UVs to implement object-fit:contain + object-position:center
+  vec2 containCenterUV(vec2 uv) {
     vec2 result;
     if (uImgAspect > uContainerAspect) {
       // Image is wider than container: fit width, letterbox vertically
       float scale = uContainerAspect / uImgAspect;
       result.x = uv.x;
-      // Bottom-aligned: image occupies [0, scale] of container Y
-      result.y = uv.y / scale;
+      result.y = (uv.y - 0.5) / scale + 0.5; // center vertically
     } else {
       // Image is taller than container: fit height, pillarbox horizontally
       float scale = uImgAspect / uContainerAspect;
@@ -116,7 +115,7 @@ const COMPOSITE_FRAGMENT = /* glsl */ `
   }
 
   void main() {
-    vec2 mappedUv = containBottomUV(vUv);
+    vec2 mappedUv = containCenterUV(vUv);
     vec2 baseUv = mappedUv + uOffsetBase;
     vec2 revealUv = mappedUv + uOffsetReveal;
 

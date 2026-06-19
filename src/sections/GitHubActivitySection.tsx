@@ -29,7 +29,7 @@ export const GitHubActivitySection = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchGitHubData = async () => {
-    const username = 'NandiVardhan2007';
+    const username = 'JAY4IGNITE';
     try {
       const [profileRes, reposRes] = await Promise.all([
         fetch(`https://api.github.com/users/${username}`).then((res) => {

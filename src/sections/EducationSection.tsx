@@ -15,7 +15,7 @@ const education: EducationItem[] = [
   {
     period: '2024 - 2028',
     title: 'B.Tech in Computer Science',
-    institution: 'Aditya College of Engineering and Technology',
+    institution: 'Aditya University',
     description:
       'Currently pursuing Bachelor\'s degree with focus on web development, data structures, and algorithms. Active participant in coding competitions and technical events.',
     score: 'Currently Pursuing',
@@ -23,18 +23,18 @@ const education: EducationItem[] = [
   {
     period: '2022 - 2024',
     title: 'Intermediate Education',
-    institution: 'Sri Chaitanya Junior Kalasala',
+    institution: 'Sasi New Gen Junior College',
     description:
       'Completed intermediate with strong foundation in mathematics and physics, which enhanced problem-solving abilities.',
-    score: '78.1%',
+    score: '96.9%',
   },
   {
     period: '2021 - 2022',
     title: 'SSC Examination',
-    institution: "T.A.R's E.M School",
+    institution: "G.B.R E.M School",
     description:
       'Completed SSC. First exposure to computer science which sparked interest in programming.',
-    score: '79.33%',
+    score: '92.17%',
   },
 ];
 
@@ -64,13 +64,8 @@ const EducationSection = () => {
             <div className="relative pl-12 sm:pl-16 pb-12 sm:pb-16 last:pb-0 group">
               {/* Timeline dot */}
               <div
-                className="absolute left-[9px] sm:left-[17px] top-1 w-[14px] h-[14px] rounded-full border-[3px] border-[#B600A8] bg-[#0C0C0C] group-hover:bg-[#B600A8] transition-colors duration-300"
+                className="absolute left-[9px] sm:left-[17px] top-[6px] sm:top-[8px] w-[14px] h-[14px] rounded-full border-[3px] border-[#B600A8] bg-[#0C0C0C] group-hover:bg-[#B600A8] transition-colors duration-300"
               />
-
-              {/* Period badge */}
-              <span className="inline-block px-3 py-1 rounded-full text-xs uppercase tracking-widest font-medium bg-white/5 text-[#D7E2EA]/60 border border-white/10 mb-3">
-                {item.period}
-              </span>
 
               {/* Title */}
               <h3
@@ -80,10 +75,16 @@ const EducationSection = () => {
                 {item.title}
               </h3>
 
-              {/* Institution */}
-              <p className="text-[#B600A8] font-medium text-sm sm:text-base mb-2">
-                {item.institution}
-              </p>
+              {/* Institution & Period */}
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-3">
+                <span className="text-[#B600A8] font-medium text-sm sm:text-base">
+                  {item.institution}
+                </span>
+                <span className="text-[#D7E2EA]/30 text-xs sm:text-sm">•</span>
+                <span className="text-[#D7E2EA]/60 text-xs sm:text-sm font-light uppercase tracking-wider">
+                  {item.period}
+                </span>
+              </div>
 
               {/* Description */}
               <p className="text-[#D7E2EA]/70 font-light leading-relaxed text-sm sm:text-base max-w-xl">

@@ -35,7 +35,7 @@ const projects: ProjectData[] = [
       'Implementing secure PIN encryption and managing concurrent database transactions while maintaining data integrity were the main technical challenges.',
     learnings:
       'Gained deep understanding of GUI development with Java Swing, database connectivity with JDBC, and secure data handling practices.',
-    link: 'https://github.com/NandiVardhan2007/ATM-Machine-Simulator',
+    link: 'https://github.com/JAY4IGNITE/ATM-Machine-Simulator',
     images: [
       '/assets/Projects/ATM/ATM1.png',
       '/assets/Projects/ATM/ATM2.png',
@@ -69,7 +69,7 @@ const projects: ProjectData[] = [
       'Handling order of operations correctly and managing floating-point precision were the primary challenges.',
     learnings:
       'Mastered event-driven programming in Java, learned about proper UI/UX design principles, and understood the importance of mathematical precision.',
-    link: 'https://github.com/NandiVardhan2007/Java-Calculator',
+    link: 'https://github.com/JAY4IGNITE/Java-Calculator',
     images: ['/assets/Projects/Calculator/cal1.png', '/assets/Projects/Calculator/cal2.png'],
   },
   {
@@ -91,7 +91,7 @@ const projects: ProjectData[] = [
       'Implementing smooth game physics and accurate collision detection was challenging. Resolved by using proper delta time calculations.',
     learnings:
       'Learned game development fundamentals including game loops, sprite management, and event handling.',
-    link: 'https://github.com/NandiVardhan2007/Flappy-Bird-Game',
+    link: 'https://github.com/JAY4IGNITE/Flappy-Bird-Game',
     images: [],
     // Has video instead: /assets/Projects/flappy_bird/fap.mp4
   },
@@ -301,6 +301,7 @@ const ProjectCard = memo(({ project, index, onViewDetails }: ProjectCardProps) =
     >
       <div
         ref={cardContentRef}
+        data-cursor="view"
         className="rounded-[30px] sm:rounded-[45px] md:rounded-[60px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 sm:p-6 md:p-8 overflow-hidden"
       >
         {/* Top row */}

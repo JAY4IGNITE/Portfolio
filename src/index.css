@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -36,7 +38,13 @@ body,
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom cursors - only on devices that support hover */
+/* Hide default cursor when interactive custom cursor is active */
+html.custom-cursor-active,
+html.custom-cursor-active * {
+  cursor: none !important;
+}
+
+/* Custom cursors - fallback only on devices that support hover */
 @media (hover: hover) {
   *,
   *::before,
@@ -95,7 +103,7 @@ body,
   height: 100% !important;
   pointer-events: none;
   object-fit: contain;
-  object-position: bottom;
+  object-position: center;
 }
 
 /* ── Hero heading ───────────────────────────────────── */

@@ -10,7 +10,7 @@ const ContactButton = ({ className = '' }: ContactButtonProps) => {
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     } else {
-      window.location.href = 'mailto:kovvurinandivardhanreddy2007@gmail.com';
+      window.location.href = 'mailto:jayasaikrishnavasamsetti@gmail.com';
     }
   };
 

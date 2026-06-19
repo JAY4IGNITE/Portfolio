@@ -19,6 +19,7 @@ const GitHubActivitySection = lazy(() =>
 import ContactSection from './sections/ContactSection';
 import ScrollToTop from './components/ScrollToTop';
 import Preloader from './components/Preloader';
+import CustomCursor from './components/CustomCursor';
 
 const StatsSkeleton = () => (
   <div className="bg-[#0C0C0C] text-[#D7E2EA] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32 section-panel overflow-hidden">
@@ -95,6 +96,7 @@ function App() {
       )}
       
       <ScrollToTop />
+      <CustomCursor />
       <motion.div
         className="fixed top-0 left-0 right-0 h-[2px] bg-[#B600A8] origin-left z-50"
         style={{ scaleX }}

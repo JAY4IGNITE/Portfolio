@@ -273,7 +273,7 @@ const ContactSection = () => {
                         <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                       </svg>
                     ),
-                    href: 'https://www.instagram.com/nandi_vardhan_reddy_?igsh=MXE5M3FiNHY3eXdwMw==',
+                    href: '#',
                     color: 'hover:text-[#E1306C] hover:bg-[#E1306C]/10',
                   },
                   {
@@ -282,7 +282,7 @@ const ContactSection = () => {
                         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
                       </svg>
                     ),
-                    href: 'https://github.com/NandiVardhan2007',
+                    href: 'https://github.com/JAY4IGNITE',
                     color: 'hover:text-white hover:bg-white/10',
                   },
                   {
@@ -292,7 +292,7 @@ const ContactSection = () => {
                         <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
                       </svg>
                     ),
-                    href: 'https://x.com/Nandu_007__',
+                    href: '#',
                     color: 'hover:text-[#1DA1F2] hover:bg-[#1DA1F2]/10',
                   },
                   {
@@ -301,7 +301,7 @@ const ContactSection = () => {
                         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                       </svg>
                     ),
-                    href: 'https://www.facebook.com/share/14TRcjixWai/',
+                    href: '#',
                     color: 'hover:text-[#1877F2] hover:bg-[#1877F2]/10',
                   },
                   {
@@ -312,7 +312,7 @@ const ContactSection = () => {
                         <circle cx="4" cy="4" r="2" />
                       </svg>
                     ),
-                    href: 'https://www.linkedin.com/in/nandi-vardhan-reddy-kovvuri-295a10375?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+                    href: 'https://www.linkedin.com/in/jay4ignite',
                     color: 'hover:text-[#0A66C2] hover:bg-[#0A66C2]/10',
                   },
                 ].map((social, i) => (
@@ -450,10 +450,10 @@ const ContactSection = () => {
       {/* Footer copyright */}
       <div className="border-t border-[#D7E2EA]/10 mt-20 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-xs text-[#D7E2EA]/40 uppercase tracking-widest font-light">
-          © {new Date().getFullYear()} Nandu. All Rights Reserved.
+          © {new Date().getFullYear()} Krishna. All Rights Reserved.
         </p>
         <p className="text-xs text-[#D7E2EA]/40 uppercase tracking-widest font-light flex items-center gap-1">
-          Made with <span className="text-[#B600A8]">❤</span> by Nandu
+          Made with <span className="text-[#B600A8]">❤</span> by Krishna
         </p>
       </div>
     </section>
