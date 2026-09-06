@@ -82,13 +82,9 @@ const ContactSection = () => {
   const [messageFocused, setMessageFocused] = useState(false);
   const messageRef = useRef<HTMLTextAreaElement>(null);
 
-  const personalEmail = import.meta.env.VITE_PERSONAL_EMAIL || '';
-  const personalPhone = import.meta.env.VITE_PERSONAL_PHONE || '';
-  const personalPhoneTel = import.meta.env.VITE_PERSONAL_PHONE_TEL || '';
-
-  if (!personalEmail && import.meta.env.DEV) {
-    console.warn('[ContactSection] VITE_PERSONAL_EMAIL is not set in environment variables.');
-  }
+  const personalEmail = import.meta.env.VITE_PERSONAL_EMAIL || 'jayasaikrishnavasamsetti@gmail.com';
+  const personalPhone = import.meta.env.VITE_PERSONAL_PHONE || '+91 9030649777';
+  const whatsappUrl = 'https://wa.me/919030649777';
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
@@ -247,11 +243,14 @@ const ContactSection = () => {
 
               <FadeIn delay={0.3} y={20}>
                 <a
-                  href={`tel:${personalPhoneTel}`}
-                  className="flex items-center gap-4 text-base sm:text-lg hover:text-[#7621B0] transition-colors duration-300 group"
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 text-base sm:text-lg hover:text-[#25D366] transition-colors duration-300 group"
+                  title="Chat on WhatsApp"
                 >
-                  <div className="p-3 rounded-full bg-[#D7E2EA]/5 group-hover:bg-[#7621B0]/10 transition-colors duration-300">
-                    <Phone className="w-6 h-6 text-[#D7E2EA] group-hover:text-[#7621B0] transition-colors duration-300" />
+                  <div className="p-3 rounded-full bg-[#D7E2EA]/5 group-hover:bg-[#25D366]/10 transition-colors duration-300">
+                    <Phone className="w-6 h-6 text-[#D7E2EA] group-hover:text-[#25D366] transition-colors duration-300" />
                   </div>
                   <span>{personalPhone}</span>
                 </a>
