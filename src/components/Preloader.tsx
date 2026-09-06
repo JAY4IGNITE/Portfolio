@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 export default function Preloader({ onComplete, onStartZoomOut }: { onComplete: () => void, onStartZoomOut: () => void }) {
   const [isZoomingOut, setIsZoomingOut] = useState(false);
   const [showText, setShowText] = useState(false);
-  const textChars = "rishna.".split("");
+  const textChars = "RISHNA".split("");
 
   useEffect(() => {
-    // Reveal 'rishna.' smoothly
+    // Reveal 'RISHNA' smoothly
     const t1 = setTimeout(() => setShowText(true), 500);
     
     // Compress back to 'K'

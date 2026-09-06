@@ -286,7 +286,7 @@ const HeroSection = () => {
                       className="hero-heading-split pl-2 pr-6 sm:pr-8 md:pr-10"
                       style={{ x: headingSplitRight }}
                     >
-                      krishna
+                      KRISHNA
                     </motion.span>
                   </h1>
                 </motion.div>
