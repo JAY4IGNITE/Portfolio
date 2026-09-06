@@ -2,7 +2,7 @@ import { useRef, useState, useEffect, memo } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useInView } from 'framer-motion';
 import ScrollRevealText from '../components/ScrollRevealText';
 
-interface ProjectData {
+export interface ProjectData {
   number: string;
   name: string;
   category: string;
@@ -16,86 +16,21 @@ interface ProjectData {
 }
 
 const projects: ProjectData[] = [
-  {
-    number: '01',
-    name: 'ATM Machine Simulator',
-    category: 'Java',
-    tech: ['Java', 'Swing', 'MySQL'],
-    description:
-      'A comprehensive ATM simulation application built using Java Swing GUI framework. Features a complete banking experience with user authentication, transaction processing, and database integration for persistent data storage.',
-    features: [
-      'User authentication with PIN verification',
-      'Balance inquiry and mini statement',
-      'Cash withdrawal and deposit functionality',
-      'PIN change and account management',
-      'Transaction history tracking',
-      'MySQL database integration for data persistence',
-    ],
-    challenges:
-      'Implementing secure PIN encryption and managing concurrent database transactions while maintaining data integrity were the main technical challenges.',
-    learnings:
-      'Gained deep understanding of GUI development with Java Swing, database connectivity with JDBC, and secure data handling practices.',
-    link: 'https://github.com/JAY4IGNITE/ATM-Machine-Simulator',
-    images: [
-      '/assets/Projects/ATM/ATM1.png',
-      '/assets/Projects/ATM/ATM2.png',
-      '/assets/Projects/ATM/ATM3.png',
-      '/assets/Projects/ATM/ATM4.png',
-      '/assets/Projects/ATM/ATM5.png',
-      '/assets/Projects/ATM/ATM6.png',
-      '/assets/Projects/ATM/ATM7.png',
-      '/assets/Projects/ATM/ATM8.png',
-      '/assets/Projects/ATM/ATM9.png',
-      '/assets/Projects/ATM/ATM10.png',
-      '/assets/Projects/ATM/ATM11.png',
-    ],
-  },
-  {
-    number: '02',
-    name: 'JAVA Calculator',
-    category: 'Java',
-    tech: ['Java', 'Swing', 'AWT'],
-    description:
-      'A fully functional scientific calculator application with an intuitive graphical interface. Supports basic arithmetic operations, scientific functions, and memory operations with a clean, user-friendly design.',
-    features: [
-      'Basic arithmetic operations (+, -, ×, ÷)',
-      'Scientific functions (sin, cos, tan, log)',
-      'Memory functions (M+, M-, MR, MC)',
-      'Keyboard input support',
-      'History of calculations',
-      'Responsive button layout',
-    ],
-    challenges:
-      'Handling order of operations correctly and managing floating-point precision were the primary challenges.',
-    learnings:
-      'Mastered event-driven programming in Java, learned about proper UI/UX design principles, and understood the importance of mathematical precision.',
-    link: 'https://github.com/JAY4IGNITE/Java-Calculator',
-    images: ['/assets/Projects/Calculator/cal1.png', '/assets/Projects/Calculator/cal2.png'],
-  },
-  {
-    number: '03',
-    name: 'Flappy Bird Game',
-    category: 'Python',
-    tech: ['Python', 'Pygame', 'OOP'],
-    description:
-      'A recreation of the popular Flappy Bird game using Python and Pygame library. Features smooth animations, collision detection, score tracking, and increasing difficulty as the game progresses.',
-    features: [
-      'Smooth 60 FPS gameplay',
-      'Realistic physics simulation',
-      'Collision detection system',
-      'Score tracking and high score',
-      'Sound effects and background music',
-      'Procedurally generated obstacles',
-    ],
-    challenges:
-      'Implementing smooth game physics and accurate collision detection was challenging. Resolved by using proper delta time calculations.',
-    learnings:
-      'Learned game development fundamentals including game loops, sprite management, and event handling.',
-    link: 'https://github.com/JAY4IGNITE/Flappy-Bird-Game',
-    images: [],
-    // Has video instead: /assets/Projects/flappy_bird/fap.mp4
-  },
+  // Add your projects here. Example format:
+  // {
+  //   number: '01',
+  //   name: 'Project Title',
+  //   category: 'Web / App / AI',
+  //   tech: ['React', 'TypeScript', 'Tailwind'],
+  //   description: 'Description of your project...',
+  //   features: ['Feature 1', 'Feature 2'],
+  //   challenges: 'Challenges faced and solutions...',
+  //   learnings: 'What you learned...',
+  //   link: 'https://github.com/...',
+  //   images: ['/assets/Projects/...'],
+  // },
 ];
+
 
 
 /* ─── Project Detail Modal ─── */
@@ -516,14 +451,22 @@ const ProjectsSection = () => {
         </motion.div>
 
         <div className="max-w-7xl mx-auto">
-          {projects.map((project, i) => (
-            <ProjectCard
-              key={project.number}
-              project={project}
-              index={i}
-              onViewDetails={setSelectedProject}
-            />
-          ))}
+          {projects.length > 0 ? (
+            projects.map((project, i) => (
+              <ProjectCard
+                key={project.number}
+                project={project}
+                index={i}
+                onViewDetails={setSelectedProject}
+              />
+            ))
+          ) : (
+            <div className="text-center py-20 px-6 border border-dashed border-[#D7E2EA]/20 rounded-[30px]">
+              <p className="text-[#D7E2EA]/40 text-base sm:text-lg uppercase tracking-widest font-light">
+                No projects added yet
+              </p>
+            </div>
+          )}
         </div>
       </section>
 

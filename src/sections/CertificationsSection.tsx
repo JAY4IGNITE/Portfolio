@@ -4,7 +4,7 @@ import ScrollRevealText from '../components/ScrollRevealText';
 import ClipRevealImage from '../components/ClipRevealImage';
 import { motion } from 'framer-motion';
 
-interface Certification {
+export interface Certification {
   name: string;
   issuer: string;
   image: string;
@@ -12,54 +12,13 @@ interface Certification {
 }
 
 const certifications: Certification[] = [
-  {
-    name: 'C Essentials 1',
-    issuer: 'Cisco Networking Academy',
-    image: '/assets/certificates/C_Essentials_1_certificate.png',
-    pdf: '/assets/certificates/C_Essentials_1_certificate.pdf',
-  },
-  {
-    name: 'Basic SQL',
-    issuer: 'HackerRank',
-    image: '/assets/certificates/sql_basic_certificate.png',
-    pdf: '/assets/certificates/sql_basic_certificate.pdf',
-  },
-  {
-    name: 'RHA Basic',
-    issuer: 'Red Hat Academy',
-    image: '/assets/certificates/RHA_Basic.png',
-    pdf: '/assets/certificates/RHA_Basic.pdf',
-  },
-  {
-    name: 'CSS',
-    issuer: 'HackerRank',
-    image: '/assets/certificates/css_certificate.png',
-    pdf: '/assets/certificates/css_certificate.pdf',
-  },
-  {
-    name: 'Building With Claude API',
-    issuer: 'Anthropic',
-    image: '/assets/certificates/Building_With_Claude_Api.png',
-    pdf: '/assets/certificates/Building_With_Claude_Api.pdf',
-  },
-  {
-    name: 'Claude Code in Action',
-    issuer: 'Anthropic',
-    image: '/assets/certificates/Claude_Code_In_Action.png',
-    pdf: '/assets/certificates/Claude_Code_In_Action.pdf',
-  },
-  {
-    name: 'Introduction to Agent Skills',
-    issuer: 'Anthropic',
-    image: '/assets/certificates/Introduction_To_Agent_Skills.png',
-    pdf: '/assets/certificates/Introduction_To_Agent_Skills.pdf',
-  },
-  {
-    name: 'Introduction to Model Context Protocol',
-    issuer: 'Anthropic',
-    image: '/assets/certificates/Introduction_To_Model_Context_Protocol.png',
-    pdf: '/assets/certificates/Introduction_To_Model_Context_Protocol.pdf',
-  },
+  // Add your certificates here. Example format:
+  // {
+  //   name: 'Certificate Name',
+  //   issuer: 'Issuing Organization',
+  //   image: '/assets/certificates/your_certificate.png',
+  //   pdf: '/assets/certificates/your_certificate.pdf',
+  // },
 ];
 
 const CARD_WIDTH = 320;
@@ -172,7 +131,7 @@ const CertificationsSection = () => {
 
   return (
     <>
-      <section className="bg-white section-panel px-0 py-20 sm:py-24 md:py-32">
+      <section id="certifications" className="bg-white section-panel px-0 py-20 sm:py-24 md:py-32">
         <ScrollRevealText
           text="Certifications"
           as="h2"
@@ -181,194 +140,195 @@ const CertificationsSection = () => {
           delay={0.03}
         />
 
-        <div className="relative">
-          {/* Left gradient fade */}
-          <div
-            className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 z-10 pointer-events-none transition-opacity duration-300"
-            style={{
-              background: 'linear-gradient(to right, white, transparent)',
-              opacity: canScrollLeft ? 1 : 0,
-            }}
-          />
-          {/* Right gradient fade */}
-          <div
-            className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 z-10 pointer-events-none transition-opacity duration-300"
-            style={{
-              background: 'linear-gradient(to left, white, transparent)',
-              opacity: canScrollRight ? 1 : 0,
-            }}
-          />
+        {certifications.length > 0 ? (
+          <div className="relative">
+            {/* Left gradient fade */}
+            <div
+              className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 z-10 pointer-events-none transition-opacity duration-300"
+              style={{
+                background: 'linear-gradient(to right, white, transparent)',
+                opacity: canScrollLeft ? 1 : 0,
+              }}
+            />
+            {/* Right gradient fade */}
+            <div
+              className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 z-10 pointer-events-none transition-opacity duration-300"
+              style={{
+                background: 'linear-gradient(to left, white, transparent)',
+                opacity: canScrollRight ? 1 : 0,
+              }}
+            />
 
-          {/* Left arrow */}
-          <button
-            onClick={() => scrollTo('left')}
-            className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 backdrop-blur-sm border border-[#0C0C0C]/10 flex items-center justify-center shadow-lg hover:bg-[#B600A8] hover:border-[#B600A8] hover:text-white text-[#0C0C0C] transition-all duration-300 cursor-pointer disabled:opacity-0 disabled:pointer-events-none"
-            disabled={!canScrollLeft}
-            aria-label="Scroll left"
-          >
-            <svg viewBox="0 0 24 24" className="w-5 h-5 fill-none stroke-current stroke-2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
+            {/* Left arrow */}
+            <button
+              onClick={() => scrollTo('left')}
+              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 backdrop-blur-sm border border-[#0C0C0C]/10 flex items-center justify-center shadow-lg hover:bg-[#B600A8] hover:border-[#B600A8] hover:text-white text-[#0C0C0C] transition-all duration-300 cursor-pointer disabled:opacity-0 disabled:pointer-events-none"
+              disabled={!canScrollLeft}
+              aria-label="Scroll left"
+            >
+              <svg viewBox="0 0 24 24" className="w-5 h-5 fill-none stroke-current stroke-2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
 
-          {/* Right arrow */}
-          <button
-            onClick={() => scrollTo('right')}
-            className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 backdrop-blur-sm border border-[#0C0C0C]/10 flex items-center justify-center shadow-lg hover:bg-[#B600A8] hover:border-[#B600A8] hover:text-white text-[#0C0C0C] transition-all duration-300 cursor-pointer disabled:opacity-0 disabled:pointer-events-none"
-            disabled={!canScrollRight}
-            aria-label="Scroll right"
-          >
-            <svg viewBox="0 0 24 24" className="w-5 h-5 fill-none stroke-current stroke-2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+            {/* Right arrow */}
+            <button
+              onClick={() => scrollTo('right')}
+              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 backdrop-blur-sm border border-[#0C0C0C]/10 flex items-center justify-center shadow-lg hover:bg-[#B600A8] hover:border-[#B600A8] hover:text-white text-[#0C0C0C] transition-all duration-300 cursor-pointer disabled:opacity-0 disabled:pointer-events-none"
+              disabled={!canScrollRight}
+              aria-label="Scroll right"
+            >
+              <svg viewBox="0 0 24 24" className="w-5 h-5 fill-none stroke-current stroke-2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
 
-          <div
-            ref={scrollRef}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseLeave}
-            className="flex gap-6 overflow-x-auto scroll-smooth px-8 sm:px-16 md:px-24 pb-4 hide-scrollbar grab-scroll"
-            style={{
-              WebkitOverflowScrolling: 'touch',
-              scrollSnapType: isGrabbing ? 'none' : 'x mandatory',
-            }}
-          >
-            {certifications.map((cert, i) => {
-              const isFlipped = flippedIndex === i;
-              
-              return (
-              <FadeIn key={cert.name} delay={i * 0.08} y={30} className="flex-shrink-0 perspective-[1200px]">
-                <motion.div
-                  onClick={() => handleCardClick(i)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      handleCardClick(i);
-                    }
-                  }}
-                  role="button"
-                  tabIndex={0}
-                  className="group cursor-pointer flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-[#B600A8]/50 rounded-3xl relative"
-                  style={{
-                    width: `${CARD_WIDTH}px`,
-                    height: '350px',
-                    scrollSnapAlign: 'start',
-                    transformStyle: 'preserve-3d',
-                  }}
-                  animate={{ rotateY: isFlipped ? 180 : 0, y: isFlipped ? -10 : 0 }}
-                  whileHover={{ y: isFlipped ? -10 : -6, transition: { duration: 0.3 } }}
-                  transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-                >
-                  {/* FRONT FACE */}
-                  <div 
-                    className="absolute inset-0 bg-[#f8f9fa] rounded-3xl overflow-hidden border border-[#0C0C0C]/5 group-hover:border-[#B600A8]/30 transition-all duration-300 shadow-md group-hover:shadow-xl group-hover:shadow-[#B600A8]/8 flex flex-col pointer-events-none"
-                    style={{ backfaceVisibility: 'hidden' }}
+            <div
+              ref={scrollRef}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseLeave}
+              className="flex gap-6 overflow-x-auto scroll-smooth px-8 sm:px-16 md:px-24 pb-4 hide-scrollbar grab-scroll"
+              style={{
+                WebkitOverflowScrolling: 'touch',
+                scrollSnapType: isGrabbing ? 'none' : 'x mandatory',
+              }}
+            >
+              {certifications.map((cert, i) => {
+                const isFlipped = flippedIndex === i;
+                
+                return (
+                <FadeIn key={cert.name} delay={i * 0.08} y={30} className="flex-shrink-0 perspective-[1200px]">
+                  <motion.div
+                    onClick={() => handleCardClick(i)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleCardClick(i);
+                      }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`${cert.name} certificate. Click to ${isFlipped ? 'view certificate image' : 'view certificate details'}`}
+                    data-cursor="view"
+                    className="relative cursor-pointer select-none"
+                    style={{
+                      width: `${CARD_WIDTH}px`,
+                      height: '420px',
+                      transformStyle: 'preserve-3d',
+                    }}
+                    animate={{ rotateY: isFlipped ? 180 : 0 }}
+                    transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
                   >
-                    <div className="aspect-[4/3] overflow-hidden">
-                      {cert.image ? (
+                    {/* FRONT OF CARD (Certificate Preview) */}
+                    <div
+                      className="absolute inset-0 rounded-[30px] overflow-hidden border border-[#0C0C0C]/10 bg-[#F5F5F5] shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col"
+                      style={{ backfaceVisibility: 'hidden' }}
+                    >
+                      {/* Image container */}
+                      <div className="relative flex-1 overflow-hidden bg-black/5">
                         <ClipRevealImage
-                          src={`${import.meta.env.BASE_URL}${cert.image.slice(1)}`}
-                          alt={cert.name}
-                          className="w-full h-full group-hover:scale-105 transition-transform duration-500 pointer-events-auto"
+                          src={cert.image.startsWith('/') ? `${import.meta.env.BASE_URL}${cert.image.slice(1)}` : cert.image}
+                          alt={`${cert.name} certificate`}
+                          className="w-full h-full object-cover"
                           direction="bottom"
                         />
-                      ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-[#F9F6F0] to-[#EADEC9] flex flex-col justify-center items-center p-6 text-center select-none relative group-hover:scale-105 transition-transform duration-500 pointer-events-auto">
-                          <div className="absolute inset-0 bg-[#0C0C0C]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          <div className="w-12 h-12 rounded-full bg-[#D97706]/10 flex items-center justify-center mb-3">
-                            <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-[#D97706] stroke-[1.5] fill-none">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                          </div>
-                          <span className="text-[#D97706] font-bold text-[10px] uppercase tracking-widest leading-none">
-                            Anthropic Certified
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-4 sm:p-5 pointer-events-auto">
-                      <h3 className="text-[#0C0C0C] font-semibold text-sm sm:text-base leading-snug line-clamp-2 min-h-[40px]">
-                        {cert.name}
-                      </h3>
-                      <p className="text-[#0C0C0C]/50 text-xs font-light mt-1 uppercase tracking-wider">
-                        {cert.issuer}
-                      </p>
-                    </div>
-                  </div>
+                        {/* Hover hint badge */}
+                        <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] uppercase tracking-widest font-medium bg-[#0C0C0C]/70 text-white backdrop-blur-sm">
+                          Flip ↻
+                        </span>
+                      </div>
 
-                  {/* BACK FACE */}
-                  <div 
-                    className="absolute inset-0 bg-[#111111] rounded-3xl overflow-hidden border border-[#B600A8]/30 shadow-xl flex flex-col items-center justify-center group/back"
-                    style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-                  >
-                    {cert.image ? (
-                      <img 
-                        src={`${import.meta.env.BASE_URL}${cert.image.slice(1)}`} 
-                        alt={cert.name}
-                        className="absolute inset-0 w-full h-full object-cover opacity-30 group-hover/back:opacity-20 transition-opacity duration-300"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 w-full h-full bg-[#0C0C0C]" />
-                    )}
-                    
-                    <div className="relative z-10 flex flex-col items-center justify-center p-6 text-center w-full h-full bg-gradient-to-t from-[#111111]/90 via-[#111111]/50 to-transparent">
-                      <h3 className="text-white font-bold text-lg mb-2 drop-shadow-md">{cert.name}</h3>
-                      <p className="text-white/80 text-xs mb-6 drop-shadow-md uppercase tracking-widest">{cert.issuer}</p>
-                      
-                      <a
-                        href={`${import.meta.env.BASE_URL}${cert.pdf.slice(1)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-6 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs uppercase tracking-widest hover:bg-[#B600A8] hover:border-[#B600A8] transition-colors shadow-lg"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        View PDF
-                      </a>
-                      
-                      <button
-                        className="mt-6 text-white/40 hover:text-white/80 text-[10px] uppercase tracking-[0.2em] transition-colors"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setFlippedIndex(null);
-                        }}
-                      >
-                        Close
-                      </button>
+                      {/* Card footer */}
+                      <div className="p-5 bg-white border-t border-[#0C0C0C]/5">
+                        <span className="text-[#B600A8] text-xs uppercase tracking-widest font-medium block mb-1">
+                          {cert.issuer}
+                        </span>
+                        <h3 className="text-[#0C0C0C] font-semibold text-base leading-snug line-clamp-2">
+                          {cert.name}
+                        </h3>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              </FadeIn>
-              );
-            })}
+
+                    {/* BACK OF CARD (Details + Actions) */}
+                    <div
+                      className="absolute inset-0 rounded-[30px] overflow-hidden border border-[#0C0C0C]/10 bg-[#0C0C0C] text-[#D7E2EA] p-6 flex flex-col justify-between shadow-xl"
+                      style={{
+                        backfaceVisibility: 'hidden',
+                        transform: 'rotateY(180deg)',
+                      }}
+                    >
+                      <div>
+                        <span className="text-[#B600A8] text-xs uppercase tracking-widest font-medium block mb-2">
+                          {cert.issuer}
+                        </span>
+                        <h3 className="text-white font-bold text-xl leading-tight mb-4">
+                          {cert.name}
+                        </h3>
+                        <div className="w-10 h-[2px] bg-[#B600A8] mb-4" />
+                        <p className="text-[#D7E2EA]/60 text-xs leading-relaxed">
+                          Verified certification issued by {cert.issuer}. Click below to view the official credential.
+                        </p>
+                      </div>
+
+                      <div className="flex flex-col gap-3">
+                        <a
+                          href={cert.pdf.startsWith('/') ? `${import.meta.env.BASE_URL}${cert.pdf.slice(1)}` : cert.pdf}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="w-full py-3 px-4 rounded-full bg-[#B600A8] hover:bg-[#9a008e] text-white text-center text-xs uppercase tracking-widest font-medium transition-colors duration-200"
+                        >
+                          View Credential ↗
+                        </a>
+                        <button
+                          className="mt-6 text-white/40 hover:text-white/80 text-[10px] uppercase tracking-[0.2em] transition-colors"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setFlippedIndex(null);
+                          }}
+                        >
+                          Close
+                        </button>
+                      </div>
+                    </div>
+                  </motion.div>
+                </FadeIn>
+                );
+              })}
+            </div>
+
+            {/* Dot indicators */}
+            <div className="flex justify-center gap-2 mt-8">
+              {certifications.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => scrollToIndex(i)}
+                  className="transition-all duration-300 rounded-full cursor-pointer"
+                  style={{
+                    width: activeIndex === i ? '28px' : '8px',
+                    height: '8px',
+                    backgroundColor: activeIndex === i ? '#B600A8' : '#0C0C0C1A',
+                  }}
+                  aria-label={`Go to certificate ${i + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Scroll hint — visible only on first load */}
+            <p className="text-center text-[#0C0C0C]/30 text-xs mt-4 uppercase tracking-widest font-light">
+              ← Drag or scroll to explore →
+            </p>
           </div>
-
-          {/* Dot indicators */}
-          <div className="flex justify-center gap-2 mt-8">
-            {certifications.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => scrollToIndex(i)}
-                className="transition-all duration-300 rounded-full cursor-pointer"
-                style={{
-                  width: activeIndex === i ? '28px' : '8px',
-                  height: '8px',
-                  backgroundColor: activeIndex === i ? '#B600A8' : '#0C0C0C1A',
-                }}
-                aria-label={`Go to certificate ${i + 1}`}
-              />
-            ))}
+        ) : (
+          <div className="text-center py-20 px-6 border border-dashed border-[#0C0C0C]/15 rounded-[30px] max-w-4xl mx-auto">
+            <p className="text-[#0C0C0C]/40 text-base sm:text-lg uppercase tracking-widest font-light">
+              No certificates added yet
+            </p>
           </div>
-
-          {/* Scroll hint — visible only on first load */}
-          <p className="text-center text-[#0C0C0C]/30 text-xs mt-4 uppercase tracking-widest font-light">
-            ← Drag or scroll to explore →
-          </p>
-        </div>
+        )}
       </section>
-
-
     </>
   );
 };
