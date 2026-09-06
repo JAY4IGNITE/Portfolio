@@ -250,9 +250,10 @@ const HeroSection = () => {
                     <a href={`mailto:${personalEmail}`} className="hover:text-white transition-colors cursor-pointer">{personalEmail}</a>
                     <a href="https://wa.me/919030649777" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors cursor-pointer">{personalPhone}</a>
                   </div>
-                  <div className="flex gap-4">
+                  <div className="flex flex-wrap gap-4">
                     <a href="https://github.com/JAY4IGNITE" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors font-medium cursor-pointer">GitHub</a>
-                    <a href="https://www.linkedin.com/in/jay4ignite" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors font-medium cursor-pointer">LinkedIn</a>
+                    <a href="https://www.linkedin.com/in/jay4ignite/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors font-medium cursor-pointer">LinkedIn</a>
+                    <a href="https://www.instagram.com/krishnaaw_14/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors font-medium cursor-pointer">Instagram</a>
                   </div>
                 </div>
               </motion.div>
