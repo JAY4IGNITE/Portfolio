@@ -4,7 +4,7 @@
  * Overhaul highlights:
  *  1. Extended 400vh scroll runway for more dramatic parallax travel
  *  2. 5 depth layers: bg-text → particles → floating orbs → portrait → heading
- *  3. Heading splits horizontally: "HI, I'M" goes left, "NANDU" goes right
+ *  3. Heading splits horizontally: "HI, I'M" goes left, "KRISHNA" goes right
  *  4. Scroll-driven vignette overlay that focuses attention on portrait center
  *  5. Each layer moves at a different scroll speed for convincing depth
  *  6. Parallax perspective container for true 3D depth rendering
@@ -58,7 +58,7 @@ const HeroSection = () => {
   const contentScale = useSpring(rawScale, { stiffness: 100, damping: 30 });
 
   // ── Multi-layer parallax transforms ───────────────────────────────────
-  // Heading split: "HI, I'M" goes left, "NANDU" goes right
+  // Heading split: "HI, I'M" goes left, "KRISHNA" goes right
   const headingSplitLeft = useTransform(scrollYProgress, [0, 0.35], [0, -120]);
   const headingSplitRight = useTransform(scrollYProgress, [0, 0.35], [0, 120]);
 
@@ -261,7 +261,7 @@ const HeroSection = () => {
 
           {/* ══════════════════════════════════════════════════════════════
               ★ HERO HEADING — with horizontal parallax split
-              "HI, I'M" drifts left, "NANDU" drifts right as you scroll
+              "HI, I'M" drifts left, "KRISHNA" drifts right as you scroll
               ══════════════════════════════════════════════════════════════ */}
           <AnimatePresence>
             {!isScrolling && (

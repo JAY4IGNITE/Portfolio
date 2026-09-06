@@ -4,16 +4,16 @@ import { useEffect, useState } from 'react';
 export default function Preloader({ onComplete, onStartZoomOut }: { onComplete: () => void, onStartZoomOut: () => void }) {
   const [isZoomingOut, setIsZoomingOut] = useState(false);
   const [showText, setShowText] = useState(false);
-  const textChars = "andu.".split("");
+  const textChars = "rishna.".split("");
 
   useEffect(() => {
-    // Reveal 'andu.' smoothly
+    // Reveal 'rishna.' smoothly
     const t1 = setTimeout(() => setShowText(true), 500);
     
-    // Compress back to 'N'
+    // Compress back to 'K'
     const t2 = setTimeout(() => setShowText(false), 2000);
     
-    // Trigger zoom-out for the remaining 'N'
+    // Trigger zoom-out for the remaining 'K'
     const t3 = setTimeout(() => {
       setIsZoomingOut(true);
       onStartZoomOut();
@@ -55,7 +55,7 @@ export default function Preloader({ onComplete, onStartZoomOut }: { onComplete: 
             }}
             className="flex items-center text-6xl sm:text-8xl md:text-[10rem] font-bold tracking-tight select-none"
           >
-            <motion.span className="text-[#3B82F6] z-10 relative">N</motion.span>
+            <motion.span className="text-[#3B82F6] z-10 relative">K</motion.span>
             
             <motion.div
               initial="hidden"

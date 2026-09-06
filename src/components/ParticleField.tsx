@@ -17,7 +17,7 @@ interface Props {
   className?: string;
 }
 
-export default function ParticleField({ text = 'NANDU', className = '' }: Props) {
+export default function ParticleField({ text = 'KRISHNA', className = '' }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
