@@ -6,11 +6,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { RefreshCw, Trophy, Flame, Target, CheckCircle, AlertCircle } from 'lucide-react';
 
 // API Endpoints
-const LEETCODE_USERNAME = 'jay4ignite';
+const LEETCODE_USERNAME = import.meta.env.VITE_LEETCODE_USERNAME?.trim() || 'krishna_0409';
 const CODECHEF_USERNAME = import.meta.env.VITE_CODECHEF_USERNAME?.trim() || 'jay4ignite';
 const CODECHEF_API_URL = import.meta.env.VITE_CODECHEF_API_URL?.trim() || '/api/codechef';
 const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes cache
-const LEETCODE_CACHE_KEY = 'leetcode_stats_cache';
+const LEETCODE_CACHE_KEY = `leetcode_stats_cache_${LEETCODE_USERNAME}`;
 const CODECHEF_CACHE_KEY = 'codechef_stats_cache';
 
 const getCodeChefStatsUrl = (forceRefresh: boolean) => {
@@ -376,7 +376,7 @@ export const CodingStatsSection = () => {
               <div className="flex items-center justify-between gap-4 mb-8">
                 <div className="flex items-center gap-4">
                   <a
-                    href="https://leetcode.com/u/jay4ignite/"
+                    href={`https://leetcode.com/u/${LEETCODE_USERNAME}/`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 bg-black/50 border border-[#D7E2EA]/10 rounded-2xl group-hover:scale-105 group-hover:border-[#B600A8]/20 transition-all"
@@ -401,7 +401,7 @@ export const CodingStatsSection = () => {
                       </div>
                     </div>
                     <p className="text-xs sm:text-sm text-[#D7E2EA]/40">
-                      leetcode.com/u/jay4ignite/
+                      leetcode.com/u/{LEETCODE_USERNAME}/
                     </p>
                   </div>
                 </div>
