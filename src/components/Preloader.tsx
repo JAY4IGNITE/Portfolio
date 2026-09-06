@@ -55,7 +55,7 @@ export default function Preloader({ onComplete, onStartZoomOut }: { onComplete: 
             }}
             className="flex items-center text-6xl sm:text-8xl md:text-[10rem] font-bold tracking-tight select-none"
           >
-            <motion.span className="text-[#3B82F6] z-10 relative">K</motion.span>
+            <motion.span className="text-[#1E3A8A] z-10 relative">K</motion.span>
             
             <motion.div
               initial="hidden"
