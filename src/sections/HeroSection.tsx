@@ -28,8 +28,8 @@ import {
 import { Menu, X } from 'lucide-react';
 import useActiveSection from '../hooks/useActiveSection';
 
-const personalEmail = import.meta.env.VITE_PERSONAL_EMAIL || '';
-const personalPhone = import.meta.env.VITE_PERSONAL_PHONE || '';
+const personalEmail = import.meta.env.VITE_PERSONAL_EMAIL || 'jayasaikrishnavasamsetti@gmail.com';
+const personalPhone = import.meta.env.VITE_PERSONAL_PHONE || '+91 9030649777';
 
 const navLinks = [
   { label: 'Home', href: '#' },
@@ -247,8 +247,8 @@ const HeroSection = () => {
 
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 text-[10px] sm:text-xs text-[#D7E2EA]/40 uppercase tracking-widest font-light border-t border-[#D7E2EA]/5 pt-6 w-full">
                   <div className="flex flex-col sm:flex-row gap-2 sm:gap-6">
-                    <p>{personalEmail}</p>
-                    <p>{personalPhone}</p>
+                    <a href={`mailto:${personalEmail}`} className="hover:text-white transition-colors cursor-pointer">{personalEmail}</a>
+                    <a href="https://wa.me/919030649777" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors cursor-pointer">{personalPhone}</a>
                   </div>
                   <div className="flex gap-4">
                     <a href="https://github.com/JAY4IGNITE" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors font-medium cursor-pointer">GitHub</a>
