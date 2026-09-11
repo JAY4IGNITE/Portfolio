@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState, useMemo } from 'react';
 import FadeIn from '../components/FadeIn';
 import ScrollRevealText from '../components/ScrollRevealText';
 import GradientCarousel, { type GradientCarouselItem } from '../components/GradientCarousel';
@@ -14,8 +14,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Jaya Sai Krishna Vasamsetti',
     date: 'October 29, 2025',
     category: 'AI & Cloud',
-    image: '/assets/certificates/OCI25GAIOCP.jpg',
-    pdf: '/assets/certificates/oracle_pro.pdf',
+    image: '/assets/Certificates/OCI25GAIOCP.jpg',
+    pdf: '/assets/Certificates/oracle_pro.pdf',
     verifyUrl: 'https://catalog-education.oracle.com',
     tags: ['Generative AI', 'LLMs', 'OCI Cloud', 'Cert ID: 102936271OCI25GAIOCP'],
     gradient: {
@@ -34,8 +34,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Jaya Sai Krishna Vasamsetti',
     date: 'October 19, 2025',
     category: 'AI & Cloud',
-    image: '/assets/certificates/OCI25AICFA.jpeg',
-    pdf: '/assets/certificates/oracle.pdf',
+    image: '/assets/Certificates/OCI25AICFA.jpeg',
+    pdf: '/assets/Certificates/oracle.pdf',
     verifyUrl: 'https://catalog-education.oracle.com',
     tags: ['AI Foundations', 'Machine Learning', 'OCI Cloud', 'Cert ID: 102936271OCI25AICFA'],
     gradient: {
@@ -54,8 +54,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Jaya Sai Krishna Vasamsetti',
     date: 'July 21, 2026',
     category: 'Databases',
-    image: '/assets/certificates/DBMS_eCertificate.png',
-    pdf: '/assets/certificates/DBMS_eCertificate.pdf',
+    image: '/assets/Certificates/DBMS_eCertificate.png',
+    pdf: '/assets/Certificates/DBMS_eCertificate.pdf',
     tags: ['Oracle Database', 'SQL', 'Relational Models', 'Cert ID: 102936271ODB12COJA'],
     gradient: {
       primary: '#DC2626',
@@ -73,8 +73,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Vasamsetti Jaya Sai Krishna',
     date: 'July 13, 2026',
     category: 'DevOps & Systems',
-    image: '/assets/certificates/ProfessionalCertificationDigitalCredentials20260721-8-ngckpa.png',
-    pdf: '/assets/certificates/ProfessionalCertificationDigitalCredentials20260721-8-ngckpa.pdf',
+    image: '/assets/Certificates/ProfessionalCertificationDigitalCredentials20260721-8-ngckpa.png',
+    pdf: '/assets/Certificates/ProfessionalCertificationDigitalCredentials20260721-8-ngckpa.pdf',
     verifyUrl: 'https://www.credly.com/badges/14d00882-70c2-4248-b799-c37d154cd8cb',
     tags: ['RHCSA', 'Red Hat Linux', 'SysAdmin', 'Credly Verified'],
     gradient: {
@@ -93,8 +93,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Vasamsetti Jaya Sai Krishna',
     date: 'June 26, 2026',
     category: 'Web & Full Stack',
-    image: '/assets/certificates/24B11CS514_Internship_certificate.png',
-    pdf: '/assets/certificates/24B11CS514_Internship_certificate.pdf',
+    image: '/assets/Certificates/24B11CS514_Internship_certificate.png',
+    pdf: '/assets/Certificates/24B11CS514_Internship_certificate.pdf',
     tags: ['Full Stack Development', 'Technical Hub', 'Summer Internship', 'Web Engineering'],
     gradient: {
       primary: '#2563EB',
@@ -112,8 +112,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Jaya Sai Krishna Vasamsetti',
     date: 'March 16, 2026',
     category: 'Web & Full Stack',
-    image: '/assets/certificates/ReactJS.png',
-    pdf: '/assets/certificates/ReactJS.pdf',
+    image: '/assets/Certificates/ReactJS.png',
+    pdf: '/assets/Certificates/ReactJS.pdf',
     tags: ['React.js', 'Components', 'Virtual DOM', 'Frontend Architecture'],
     gradient: {
       primary: '#06B6D4',
@@ -131,8 +131,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Jaya Sai Krishna Vasamsetti',
     date: 'March 9, 2026',
     category: 'Databases',
-    image: '/assets/certificates/MongoDB.png',
-    pdf: '/assets/certificates/MongoDB.pdf',
+    image: '/assets/Certificates/MongoDB.png',
+    pdf: '/assets/Certificates/MongoDB.pdf',
     tags: ['MongoDB', 'NoSQL', 'Aggregation', 'Document Schema'],
     gradient: {
       primary: '#10B981',
@@ -150,8 +150,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Jaya Sai Krishna Vasamsetti',
     date: 'February 20, 2026',
     category: 'Web & Full Stack',
-    image: '/assets/certificates/ExpressJS.png',
-    pdf: '/assets/certificates/ExpressJS.pdf',
+    image: '/assets/Certificates/ExpressJS.png',
+    pdf: '/assets/Certificates/ExpressJS.pdf',
     tags: ['Express.js', 'Node.js', 'REST APIs', 'Middleware'],
     gradient: {
       primary: '#64748B',
@@ -169,8 +169,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Jaya Sai Krishna Vasamsetti',
     date: 'March 3, 2026',
     category: 'AI & Cloud',
-    image: '/assets/certificates/artificial-intelligence.png',
-    pdf: '/assets/certificates/artificial-intelligence.pdf',
+    image: '/assets/Certificates/artificial-intelligence.png',
+    pdf: '/assets/Certificates/artificial-intelligence.pdf',
     tags: ['Artificial Intelligence', 'Coursera', 'Aditya University', 'Search & Logic'],
     gradient: {
       primary: '#0056D2',
@@ -188,8 +188,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Vasamsetti Jaya Sai Krishna',
     date: '2026',
     category: 'Programming & DSA',
-    image: '/assets/certificates/C--_Advanced_certificate_24b11cs514-adityauniversity-in_cbeeff7e-6be0-410d-8f91-5ab1abdb162f.png',
-    pdf: '/assets/certificates/C--_Advanced_certificate_24b11cs514-adityauniversity-in_cbeeff7e-6be0-410d-8f91-5ab1abdb162f.pdf',
+    image: '/assets/Certificates/C--_Advanced_certificate_24b11cs514-adityauniversity-in_cbeeff7e-6be0-410d-8f91-5ab1abdb162f.png',
+    pdf: '/assets/Certificates/C--_Advanced_certificate_24b11cs514-adityauniversity-in_cbeeff7e-6be0-410d-8f91-5ab1abdb162f.pdf',
     verifyUrl: 'https://www.netacad.com',
     tags: ['C++', 'Advanced OOP', 'STL', 'Aditya University'],
     gradient: {
@@ -208,8 +208,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Vasamsetti Jaya Sai Krishna',
     date: '2025',
     category: 'Programming & DSA',
-    image: '/assets/certificates/C--_Essentials_1_certificate_24b11cs514-adityauniversity-in_0bafd690-d349-4844-8f94-463d2cac6ac3.png',
-    pdf: '/assets/certificates/C--_Essentials_1_certificate_24b11cs514-adityauniversity-in_0bafd690-d349-4844-8f94-463d2cac6ac3.pdf',
+    image: '/assets/Certificates/C--_Essentials_1_certificate_24b11cs514-adityauniversity-in_0bafd690-d349-4844-8f94-463d2cac6ac3.png',
+    pdf: '/assets/Certificates/C--_Essentials_1_certificate_24b11cs514-adityauniversity-in_0bafd690-d349-4844-8f94-463d2cac6ac3.pdf',
     tags: ['C++', 'Basics', 'Cisco NetAcad', 'Algorithms'],
     gradient: {
       primary: '#0284C7',
@@ -227,8 +227,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Vasamsetti Jaya Sai Krishna',
     date: '2025',
     category: 'Programming & DSA',
-    image: '/assets/certificates/C--_Essentials_2_certificate_24b11cs514-adityauniversity-in_df07c4d8-879d-47d0-9473-f0a085b8001f.png',
-    pdf: '/assets/certificates/C--_Essentials_2_certificate_24b11cs514-adityauniversity-in_df07c4d8-879d-47d0-9473-f0a085b8001f.pdf',
+    image: '/assets/Certificates/C--_Essentials_2_certificate_24b11cs514-adityauniversity-in_df07c4d8-879d-47d0-9473-f0a085b8001f.png',
+    pdf: '/assets/Certificates/C--_Essentials_2_certificate_24b11cs514-adityauniversity-in_df07c4d8-879d-47d0-9473-f0a085b8001f.pdf',
     tags: ['C++', 'OOP Architecture', 'Inheritance', 'Polymorphism'],
     gradient: {
       primary: '#0369A1',
@@ -246,8 +246,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Vasamsetti Jaya Sai Krishna',
     date: '2025',
     category: 'Programming & DSA',
-    image: '/assets/certificates/C_Essentials_1_certificate_24b11cs514-adityauniversity-in_048e4435-0a91-4746-bbe4-95f6f6de58fc (1).png',
-    pdf: '/assets/certificates/C_Essentials_1_certificate_24b11cs514-adityauniversity-in_048e4435-0a91-4746-bbe4-95f6f6de58fc (1).pdf',
+    image: '/assets/Certificates/C_Essentials_1_certificate_24b11cs514-adityauniversity-in_048e4435-0a91-4746-bbe4-95f6f6de58fc (1).png',
+    pdf: '/assets/Certificates/C_Essentials_1_certificate_24b11cs514-adityauniversity-in_048e4435-0a91-4746-bbe4-95f6f6de58fc (1).pdf',
     tags: ['C Programming', 'Pointers', 'Memory Allocation', 'Cisco'],
     gradient: {
       primary: '#0284C7',
@@ -265,8 +265,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Vasamsetti Jaya Sai Krishna',
     date: '2025',
     category: 'DevOps & Systems',
-    image: '/assets/certificates/Ethical_Hacker_certificate_24b11cs514-adityauniversity-in_ff34ca68-e19b-4cfc-b237-5960de6d2797.png',
-    pdf: '/assets/certificates/Ethical_Hacker_certificate_24b11cs514-adityauniversity-in_ff34ca68-e19b-4cfc-b237-5960de6d2797.pdf',
+    image: '/assets/Certificates/Ethical_Hacker_certificate_24b11cs514-adityauniversity-in_ff34ca68-e19b-4cfc-b237-5960de6d2797.png',
+    pdf: '/assets/Certificates/Ethical_Hacker_certificate_24b11cs514-adityauniversity-in_ff34ca68-e19b-4cfc-b237-5960de6d2797.pdf',
     tags: ['Cybersecurity', 'Ethical Hacking', 'Penetration Testing', 'Cisco'],
     gradient: {
       primary: '#10B981',
@@ -284,8 +284,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Vasamsetti Jaya Sai Krishna',
     date: 'October 10, 2025',
     category: 'Databases',
-    image: '/assets/certificates/DBMS_certi.png',
-    pdf: '/assets/certificates/DBMS_certi.pdf',
+    image: '/assets/Certificates/DBMS_certi.png',
+    pdf: '/assets/Certificates/DBMS_certi.pdf',
     tags: ['Database Foundations', 'Oracle Academy', 'SQL Queries'],
     gradient: {
       primary: '#D97706',
@@ -303,8 +303,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Jaya Sai Krishna Vasamsetti',
     date: 'March 8, 2026',
     category: 'DevOps & Systems',
-    image: '/assets/certificates/OScerti.png',
-    pdf: '/assets/certificates/OScerti.pdf',
+    image: '/assets/Certificates/OScerti.png',
+    pdf: '/assets/Certificates/OScerti.pdf',
     tags: ['Operating Systems', 'Concurrency', 'Process Scheduling', 'Aditya University'],
     gradient: {
       primary: '#475569',
@@ -322,8 +322,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Jaya Sai Krishna Vasamsetti',
     date: 'March 8, 2026',
     category: 'AI & Cloud',
-    image: '/assets/certificates/QuantumComputing.png',
-    pdf: '/assets/certificates/QuantumComputing.pdf',
+    image: '/assets/Certificates/QuantumComputing.png',
+    pdf: '/assets/Certificates/QuantumComputing.pdf',
     tags: ['Quantum Computing', 'Qubits', 'Quantum Circuits', 'Coursera'],
     gradient: {
       primary: '#7C3AED',
@@ -341,8 +341,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Jaya Sai Krishna Vasamsetti',
     date: 'October 21, 2025',
     category: 'AI & Cloud',
-    image: '/assets/certificates/pythonCerti.png',
-    pdf: '/assets/certificates/pythonCerti.pdf',
+    image: '/assets/Certificates/pythonCerti.png',
+    pdf: '/assets/Certificates/pythonCerti.pdf',
     tags: ['IBM', 'Python', 'Pandas', 'NumPy', 'Data Analysis'],
     gradient: {
       primary: '#006699',
@@ -360,8 +360,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Vasamsetti Jaya Sai Krishna',
     date: '2025',
     category: 'Programming & DSA',
-    image: '/assets/certificates/python_basic certificate.png',
-    pdf: '/assets/certificates/python_basic certificate.pdf',
+    image: '/assets/Certificates/python_basic certificate.png',
+    pdf: '/assets/Certificates/python_basic certificate.pdf',
     tags: ['Python', 'Problem Solving', 'HackerRank Verified'],
     gradient: {
       primary: '#22C55E',
@@ -379,8 +379,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Jaya Sai Krishna Vasamsetti',
     date: 'November 12, 2025',
     category: 'Programming & DSA',
-    image: '/assets/certificates/1-22dbc95c-5546-49d6-8de7-d85859431ec8.png',
-    pdf: '/assets/certificates/1-22dbc95c-5546-49d6-8de7-d85859431ec8.pdf',
+    image: '/assets/Certificates/1-22dbc95c-5546-49d6-8de7-d85859431ec8.png',
+    pdf: '/assets/Certificates/1-22dbc95c-5546-49d6-8de7-d85859431ec8.pdf',
     tags: ['C++', 'Memory Management', 'Algorithms', 'Infosys'],
     gradient: {
       primary: '#007CC3',
@@ -398,8 +398,8 @@ export const certificationsData: GradientCarouselItem[] = [
     recipient: 'Jaya Sai Krishna Vasamsetti',
     date: 'November 12, 2025',
     category: 'Programming & DSA',
-    image: '/assets/certificates/1-f603ce3f-364e-4dc0-aeb7-9753a05daee5.png',
-    pdf: '/assets/certificates/1-f603ce3f-364e-4dc0-aeb7-9753a05daee5.pdf',
+    image: '/assets/Certificates/1-f603ce3f-364e-4dc0-aeb7-9753a05daee5.png',
+    pdf: '/assets/Certificates/1-f603ce3f-364e-4dc0-aeb7-9753a05daee5.pdf',
     tags: ['Python', 'Data Structures', 'Infosys Springboard'],
     gradient: {
       primary: '#387EB8',
@@ -410,8 +410,24 @@ export const certificationsData: GradientCarouselItem[] = [
   },
 ];
 
+const categories = [
+  'All',
+  'AI & Cloud',
+  'Programming & DSA',
+  'Web & Full Stack',
+  'Databases',
+  'DevOps & Systems',
+] as const;
+
 const CertificationsSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const [activeCategory, setActiveCategory] = useState<string>('All');
+
+  const filteredCertificates = useMemo(() => {
+    if (activeCategory === 'All') return certificationsData;
+    return certificationsData.filter((c) => c.category === activeCategory);
+  }, [activeCategory]);
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start'],
@@ -436,12 +452,12 @@ const CertificationsSection = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header Block */}
-        <motion.div style={{ y: headerY }} className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <motion.div style={{ y: headerY }} className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
           <FadeIn delay={0.1} y={20}>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md mb-6">
               <Sparkles className="w-3.5 h-3.5 text-[#B600A8]" />
               <span className="text-[#D7E2EA]/70 text-xs sm:text-sm font-mono tracking-widest uppercase">
-                Verified Credentials ({certificationsData.length} Certifications)
+                Official Credentials ({certificationsData.length} Certifications)
               </span>
             </div>
           </FadeIn>
@@ -463,16 +479,48 @@ const CertificationsSection = () => {
           </FadeIn>
         </motion.div>
 
+        {/* ─── INTERACTIVE CATEGORY FILTER TABS ─── */}
+        <FadeIn delay={0.32} y={20}>
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-10 max-w-4xl mx-auto px-2">
+            {categories.map((cat) => {
+              const count = cat === 'All' 
+                ? certificationsData.length 
+                : certificationsData.filter((c) => c.category === cat).length;
+              const isSelected = activeCategory === cat;
+
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono tracking-wide transition-all duration-300 cursor-pointer border ${
+                    isSelected
+                      ? 'bg-gradient-to-r from-[#B600A8] to-[#7621B0] text-white border-white/25 shadow-[0_0_20px_rgba(182,0,168,0.4)] scale-105'
+                      : 'bg-white/[0.04] text-[#D7E2EA]/70 hover:text-white hover:bg-white/[0.08] border-white/10'
+                  }`}
+                >
+                  <span>{cat}</span>
+                  <span className={`px-1.5 py-0.2 text-[10.5px] rounded-full font-bold ${
+                    isSelected ? 'bg-white/20 text-white' : 'bg-white/[0.07] text-[#D7E2EA]/60'
+                  }`}>
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </FadeIn>
+
         {/* ─── 3D GRADIENT CAROUSEL ─── */}
-        <FadeIn delay={0.35} y={30}>
+        <FadeIn delay={0.36} y={30}>
           <GradientCarousel 
-            items={certificationsData}
+            key={activeCategory}
+            items={filteredCertificates}
             cardWidth={430}
             cardHeight={540}
             showControls={true}
             showIndicators={true}
             autoScroll={true}
-            autoScrollInterval={1800}
+            autoScrollInterval={3800}
             pauseOnHover={true}
           />
         </FadeIn>
