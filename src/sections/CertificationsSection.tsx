@@ -1,337 +1,385 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useRef, useState } from 'react';
 import FadeIn from '../components/FadeIn';
 import ScrollRevealText from '../components/ScrollRevealText';
-import ClipRevealImage from '../components/ClipRevealImage';
-import { motion } from 'framer-motion';
+import GradientCarousel, { type GradientCarouselItem } from '../components/GradientCarousel';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Award, ShieldCheck, Sparkles } from 'lucide-react';
 
-export interface Certification {
-  name: string;
-  issuer: string;
-  image: string;
-  pdf: string;
-}
-
-const certifications: Certification[] = [
-  // Add your certificates here. Example format:
-  // {
-  //   name: 'Certificate Name',
-  //   issuer: 'Issuing Organization',
-  //   image: '/assets/certificates/your_certificate.png',
-  //   pdf: '/assets/certificates/your_certificate.pdf',
-  // },
+export const certificationsData: GradientCarouselItem[] = [
+  {
+    id: 'oracle-genai-pro',
+    title: 'OCI 2025 Generative AI Certified Professional',
+    issuer: 'Oracle',
+    recipient: 'Vasamsetti Jaya Sai Krishna',
+    date: '2025',
+    category: 'AI & LLMs',
+    image: '/certificates/OCI25GAIOCP.jpg',
+    pdf: '/certificates/oracle_pro.pdf',
+    verifyUrl: 'https://catalog-education.oracle.com',
+    tags: ['Generative AI', 'LLMs', 'Oracle Cloud', 'Professional'],
+    gradient: {
+      primary: '#C74634',
+      secondary: '#F97316',
+      ambient: 'rgba(199, 70, 52, 0.4)',
+      accentGlow: '#C74634',
+    },
+  },
+  {
+    id: 'oracle-ai-foundations',
+    title: 'OCI 2025 AI Certified Foundations Associate',
+    issuer: 'Oracle',
+    recipient: 'Vasamsetti Jaya Sai Krishna',
+    date: '2025',
+    category: 'AI & LLMs',
+    image: '/certificates/OCI25AICFA.jpeg',
+    pdf: '/certificates/oracle.pdf',
+    verifyUrl: 'https://catalog-education.oracle.com',
+    tags: ['AI Foundations', 'Machine Learning', 'OCI Cloud', 'Associate'],
+    gradient: {
+      primary: '#EA580C',
+      secondary: '#D97706',
+      ambient: 'rgba(234, 88, 12, 0.4)',
+      accentGlow: '#EA580C',
+    },
+  },
+  {
+    id: 'anthropic-claude-api',
+    title: 'Building with Claude API',
+    issuer: 'Anthropic',
+    recipient: 'Vasamsetti Jaya Sai Krishna',
+    date: '2025',
+    category: 'AI & LLMs',
+    image: '/assets/certificates/Building_With_Claude_Api.png',
+    pdf: '/assets/certificates/Building_With_Claude_Api.pdf',
+    tags: ['Claude API', 'LLM Agents', 'Anthropic', 'Prompt Engineering'],
+    gradient: {
+      primary: '#D97706',
+      secondary: '#9333EA',
+      ambient: 'rgba(217, 119, 6, 0.4)',
+      accentGlow: '#D97706',
+    },
+  },
+  {
+    id: 'anthropic-claude-code',
+    title: 'Claude Code in Action',
+    issuer: 'Anthropic',
+    recipient: 'Vasamsetti Jaya Sai Krishna',
+    date: '2025',
+    category: 'AI & LLMs',
+    image: '/assets/certificates/Claude_Code_In_Action.png',
+    pdf: '/assets/certificates/Claude_Code_In_Action.pdf',
+    tags: ['Claude Code', 'AI Assisted Coding', 'Anthropic'],
+    gradient: {
+      primary: '#8B5CF6',
+      secondary: '#D97706',
+      ambient: 'rgba(139, 92, 246, 0.4)',
+      accentGlow: '#8B5CF6',
+    },
+  },
+  {
+    id: 'anthropic-mcp',
+    title: 'Introduction to Model Context Protocol (MCP)',
+    issuer: 'Anthropic',
+    recipient: 'Vasamsetti Jaya Sai Krishna',
+    date: '2025',
+    category: 'AI & LLMs',
+    image: '/assets/certificates/Introduction_To_Model_Context_Protocol.png',
+    pdf: '/assets/certificates/Introduction_To_Model_Context_Protocol.pdf',
+    tags: ['MCP Protocol', 'Agent Tooling', 'Anthropic', 'Context Architecture'],
+    gradient: {
+      primary: '#7C3AED',
+      secondary: '#06B6D4',
+      ambient: 'rgba(124, 58, 237, 0.4)',
+      accentGlow: '#7C3AED',
+    },
+  },
+  {
+    id: 'anthropic-agent-skills',
+    title: 'Introduction to Agent Skills',
+    issuer: 'Anthropic',
+    recipient: 'Vasamsetti Jaya Sai Krishna',
+    date: '2025',
+    category: 'AI & LLMs',
+    image: '/assets/certificates/Introduction_To_Agent_Skills.png',
+    pdf: '/assets/certificates/Introduction_To_Agent_Skills.pdf',
+    tags: ['AI Agent Skills', 'Workflows', 'Anthropic'],
+    gradient: {
+      primary: '#9333EA',
+      secondary: '#EC4899',
+      ambient: 'rgba(147, 51, 234, 0.4)',
+      accentGlow: '#9333EA',
+    },
+  },
+  {
+    id: 'coursera-ai',
+    title: 'Artificial Intelligence',
+    issuer: 'Aditya University / Coursera',
+    recipient: 'Jaya Sai Krishna Vasamsetti',
+    date: 'Mar 3, 2026',
+    category: 'AI & LLMs',
+    image: '/assets/certificates/Coursera_Artificial_Intelligence.png',
+    pdf: '/assets/certificates/Coursera_Artificial_Intelligence.pdf',
+    verifyUrl: 'https://coursera.org/verify/8TVUA38G057O',
+    tags: ['Artificial Intelligence', 'Coursera', 'Aditya University', 'ML Algorithms'],
+    gradient: {
+      primary: '#0056D2',
+      secondary: '#A855F7',
+      ambient: 'rgba(0, 86, 210, 0.4)',
+      accentGlow: '#A855F7',
+    },
+  },
+  {
+    id: 'cisco-cpp-adv',
+    title: 'C++ Advanced',
+    issuer: 'Cisco Networking Academy',
+    recipient: 'Vasamsetti Jaya Sai Krishna',
+    date: '04 Jan 2026',
+    category: 'Programming',
+    image: '/assets/certificates/Cisco_CPP_Advanced.png',
+    pdf: '/assets/certificates/Cisco_CPP_Advanced.pdf',
+    verifyUrl: 'https://www.netacad.com',
+    tags: ['C++', 'Advanced OOP', 'STL', 'Cisco NetAcad'],
+    gradient: {
+      primary: '#00BCEB',
+      secondary: '#10B981',
+      ambient: 'rgba(0, 188, 235, 0.4)',
+      accentGlow: '#00BCEB',
+    },
+  },
+  {
+    id: 'infosys-cpp',
+    title: 'Programming Using C++',
+    issuer: 'Infosys Springboard',
+    recipient: 'Jaya Sai Krishna Vasamsetti',
+    date: 'Nov 12, 2025',
+    category: 'Programming',
+    image: '/assets/certificates/Infosys_Programming_Using_CPP.png',
+    pdf: '/assets/certificates/Infosys_Programming_Using_CPP.pdf',
+    verifyUrl: 'https://verify.onwingspan.com',
+    tags: ['C++', 'Memory Management', 'Algorithms', 'Infosys'],
+    gradient: {
+      primary: '#007CC3',
+      secondary: '#00C0F3',
+      ambient: 'rgba(0, 124, 195, 0.4)',
+      accentGlow: '#00C0F3',
+    },
+  },
+  {
+    id: 'infosys-python',
+    title: 'Basics of Python',
+    issuer: 'Infosys Springboard',
+    recipient: 'Jaya Sai Krishna Vasamsetti',
+    date: 'Nov 12, 2025',
+    category: 'Programming',
+    image: '/assets/certificates/Infosys_Basics_of_Python.png',
+    pdf: '/assets/certificates/Infosys_Basics_of_Python.pdf',
+    verifyUrl: 'https://verify.onwingspan.com',
+    tags: ['Python', 'Problem Solving', 'Data Structures', 'Infosys'],
+    gradient: {
+      primary: '#387EB8',
+      secondary: '#F59E0B',
+      ambient: 'rgba(56, 126, 184, 0.4)',
+      accentGlow: '#F59E0B',
+    },
+  },
+  {
+    id: 'cisco-c-essentials',
+    title: 'C Essentials 1',
+    issuer: 'Cisco / C++ Institute',
+    recipient: 'Vasamsetti Jaya Sai Krishna',
+    date: '2025',
+    category: 'Programming',
+    image: '/assets/certificates/C_Essentials_1_certificate.png',
+    pdf: '/assets/certificates/C_Essentials_1_certificate.pdf',
+    tags: ['C Programming', 'Pointers', 'Cisco', 'C++ Institute'],
+    gradient: {
+      primary: '#0284C7',
+      secondary: '#38BDF8',
+      ambient: 'rgba(2, 132, 199, 0.4)',
+      accentGlow: '#38BDF8',
+    },
+  },
+  {
+    id: 'sql-basic',
+    title: 'SQL Basic Certificate',
+    issuer: 'HackerRank / Technical Hub',
+    recipient: 'Vasamsetti Jaya Sai Krishna',
+    date: '2025',
+    category: 'Programming',
+    image: '/assets/certificates/sql_basic_certificate.png',
+    pdf: '/assets/certificates/sql_basic_certificate.pdf',
+    tags: ['SQL', 'Relational Databases', 'Queries', 'Joins'],
+    gradient: {
+      primary: '#059669',
+      secondary: '#10B981',
+      ambient: 'rgba(5, 150, 105, 0.4)',
+      accentGlow: '#10B981',
+    },
+  },
+  {
+    id: 'redhat-sysadmin',
+    title: 'Red Hat System Administration (RHA Basic)',
+    issuer: 'Red Hat Academy',
+    recipient: 'Vasamsetti Jaya Sai Krishna',
+    date: '2025',
+    category: 'Systems & Cloud',
+    image: '/assets/certificates/RHA_Basic.png',
+    pdf: '/assets/certificates/RHA_Basic.pdf',
+    tags: ['Red Hat Linux', 'SysAdmin', 'Bash', 'RHA'],
+    gradient: {
+      primary: '#EE0000',
+      secondary: '#831843',
+      ambient: 'rgba(238, 0, 0, 0.4)',
+      accentGlow: '#EE0000',
+    },
+  },
+  {
+    id: 'css-certificate',
+    title: 'CSS Certificate',
+    issuer: 'HackerRank / Technical Hub',
+    recipient: 'Vasamsetti Jaya Sai Krishna',
+    date: '2025',
+    category: 'Systems & Cloud',
+    image: '/assets/certificates/css_certificate.png',
+    pdf: '/assets/certificates/css_certificate.pdf',
+    tags: ['CSS3', 'Responsive Design', 'Flexbox', 'Grid'],
+    gradient: {
+      primary: '#2563EB',
+      secondary: '#7C3AED',
+      ambient: 'rgba(37, 99, 235, 0.4)',
+      accentGlow: '#7C3AED',
+    },
+  },
 ];
 
-const CARD_WIDTH = 320;
-const CARD_GAP = 24;
+const categories = ['ALL', 'AI & LLMs', 'Programming', 'Systems & Cloud'];
 
 const CertificationsSection = () => {
-  const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-  const [isGrabbing, setIsGrabbing] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-  const scrollLeftStart = useRef(0);
+  const [selectedCategory, setSelectedCategory] = useState('ALL');
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
 
-  // Key handler for un-flipping
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setFlippedIndex(null);
-    };
-    if (flippedIndex !== null) {
-      window.addEventListener('keydown', handleKeyDown);
-    }
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [flippedIndex]);
+  const headerY = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
-  const updateScrollState = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 10);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
-
-    // Update active dot based on scroll position
-    const cardTotal = CARD_WIDTH + CARD_GAP;
-    const idx = Math.round(el.scrollLeft / cardTotal);
-    setActiveIndex(Math.min(idx, certifications.length - 1));
-  }, []);
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    el.addEventListener('scroll', updateScrollState, { passive: true });
-    updateScrollState();
-    return () => el.removeEventListener('scroll', updateScrollState);
-  }, [updateScrollState]);
-
-  // Mouse drag-to-scroll handlers
-  const handleMouseDown = (e: React.MouseEvent) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    isDragging.current = false;
-    setIsGrabbing(true);
-    startX.current = e.pageX - el.offsetLeft;
-    scrollLeftStart.current = el.scrollLeft;
-    el.style.scrollBehavior = 'auto'; // disable smooth during drag
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isGrabbing) return;
-    const el = scrollRef.current;
-    if (!el) return;
-    e.preventDefault();
-    const x = e.pageX - el.offsetLeft;
-    const walk = (x - startX.current) * 1.5; // multiply for faster drag feel
-    if (Math.abs(walk) > 5) isDragging.current = true;
-    el.scrollLeft = scrollLeftStart.current - walk;
-  };
-
-  const handleMouseUp = () => {
-    setIsGrabbing(false);
-    const el = scrollRef.current;
-    if (el) el.style.scrollBehavior = 'smooth';
-  };
-
-  const handleMouseLeave = () => {
-    if (isGrabbing) {
-      setIsGrabbing(false);
-      const el = scrollRef.current;
-      if (el) el.style.scrollBehavior = 'smooth';
-    }
-  };
-
-  const scrollTo = (direction: 'left' | 'right') => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const scrollAmount = CARD_WIDTH + CARD_GAP;
-    el.scrollBy({
-      left: direction === 'left' ? -scrollAmount : scrollAmount,
-      behavior: 'smooth',
-    });
-  };
-
-  const scrollToIndex = (index: number) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    el.scrollTo({
-      left: index * (CARD_WIDTH + CARD_GAP),
-      behavior: 'smooth',
-    });
-  };
-
-  const handleCardClick = (index: number) => {
-    // Don't flip if user was dragging
-    if (isDragging.current) return;
-    setFlippedIndex(flippedIndex === index ? null : index);
-  };
+  const filteredCertifications = selectedCategory === 'ALL'
+    ? certificationsData
+    : certificationsData.filter((c) => c.category === selectedCategory);
 
   return (
-    <>
-      <section id="certifications" className="bg-white section-panel px-0 py-20 sm:py-24 md:py-32">
-        <ScrollRevealText
-          text="Certifications"
-          as="h2"
-          splitBy="chars"
-          className="text-[#0C0C0C] font-black uppercase text-center mb-16 sm:mb-20 md:mb-28 px-5 sm:px-8 md:px-10 text-[clamp(3rem,8vw,110px)] leading-none"
-          delay={0.03}
-        />
+    <section
+      id="certifications"
+      ref={sectionRef}
+      className="bg-[#0C0C0C] section-panel px-4 sm:px-8 md:px-12 py-24 sm:py-32 relative z-20 overflow-hidden text-white transition-colors duration-700"
+    >
+      {/* Subtle Background Matrix */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-[0.03]"
+        style={{
+          backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+        }}
+      />
 
-        {certifications.length > 0 ? (
-          <div className="relative">
-            {/* Left gradient fade */}
-            <div
-              className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 z-10 pointer-events-none transition-opacity duration-300"
-              style={{
-                background: 'linear-gradient(to right, white, transparent)',
-                opacity: canScrollLeft ? 1 : 0,
-              }}
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Header Block */}
+        <motion.div style={{ y: headerY }} className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <FadeIn delay={0.1} y={20}>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md mb-6">
+              <Sparkles className="w-3.5 h-3.5 text-[#B600A8]" />
+              <span className="text-[#D7E2EA]/70 text-xs sm:text-sm font-mono tracking-widest uppercase">
+                Verified Credentials
+              </span>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.2} y={30}>
+            <ScrollRevealText
+              text="Certifications"
+              as="h2"
+              splitBy="chars"
+              className="text-white font-black uppercase text-center mb-6 text-[clamp(2.5rem,6vw,5.5rem)] leading-none tracking-tight"
+              delay={0.03}
             />
-            {/* Right gradient fade */}
-            <div
-              className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 z-10 pointer-events-none transition-opacity duration-300"
-              style={{
-                background: 'linear-gradient(to left, white, transparent)',
-                opacity: canScrollRight ? 1 : 0,
-              }}
-            />
+          </FadeIn>
 
-            {/* Left arrow */}
-            <button
-              onClick={() => scrollTo('left')}
-              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 backdrop-blur-sm border border-[#0C0C0C]/10 flex items-center justify-center shadow-lg hover:bg-[#B600A8] hover:border-[#B600A8] hover:text-white text-[#0C0C0C] transition-all duration-300 cursor-pointer disabled:opacity-0 disabled:pointer-events-none"
-              disabled={!canScrollLeft}
-              aria-label="Scroll left"
-            >
-              <svg viewBox="0 0 24 24" className="w-5 h-5 fill-none stroke-current stroke-2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
+          <FadeIn delay={0.3} y={20}>
+            <p className="text-[#D7E2EA]/70 text-base sm:text-lg md:text-xl font-light leading-relaxed">
+              Global credentials validating expertise in Generative AI, LLMs, Advanced Algorithms, Systems Programming, and Cloud Architecture.
+            </p>
+          </FadeIn>
+        </motion.div>
 
-            {/* Right arrow */}
-            <button
-              onClick={() => scrollTo('right')}
-              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 backdrop-blur-sm border border-[#0C0C0C]/10 flex items-center justify-center shadow-lg hover:bg-[#B600A8] hover:border-[#B600A8] hover:text-white text-[#0C0C0C] transition-all duration-300 cursor-pointer disabled:opacity-0 disabled:pointer-events-none"
-              disabled={!canScrollRight}
-              aria-label="Scroll right"
-            >
-              <svg viewBox="0 0 24 24" className="w-5 h-5 fill-none stroke-current stroke-2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
+        {/* Category Filter Pills */}
+        <FadeIn delay={0.35} y={20}>
+          <div className="flex justify-center mb-8 sm:mb-12">
+            <div className="inline-flex items-center gap-1.5 p-1.5 rounded-full border border-white/10 bg-[#121214]/80 backdrop-blur-xl">
+              {categories.map((cat) => {
+                const isActive = selectedCategory === cat;
+                const count = cat === 'ALL'
+                  ? certificationsData.length
+                  : certificationsData.filter((c) => c.category === cat).length;
 
-            <div
-              ref={scrollRef}
-              onMouseDown={handleMouseDown}
-              onMouseMove={handleMouseMove}
-              onMouseUp={handleMouseUp}
-              onMouseLeave={handleMouseLeave}
-              className="flex gap-6 overflow-x-auto scroll-smooth px-8 sm:px-16 md:px-24 pb-4 hide-scrollbar grab-scroll"
-              style={{
-                WebkitOverflowScrolling: 'touch',
-                scrollSnapType: isGrabbing ? 'none' : 'x mandatory',
-              }}
-            >
-              {certifications.map((cert, i) => {
-                const isFlipped = flippedIndex === i;
-                
                 return (
-                <FadeIn key={cert.name} delay={i * 0.08} y={30} className="flex-shrink-0 perspective-[1200px]">
-                  <motion.div
-                    onClick={() => handleCardClick(i)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        handleCardClick(i);
-                      }
-                    }}
-                    role="button"
-                    tabIndex={0}
-                    aria-label={`${cert.name} certificate. Click to ${isFlipped ? 'view certificate image' : 'view certificate details'}`}
-                    data-cursor="view"
-                    className="relative cursor-pointer select-none"
-                    style={{
-                      width: `${CARD_WIDTH}px`,
-                      height: '420px',
-                      transformStyle: 'preserve-3d',
-                    }}
-                    animate={{ rotateY: isFlipped ? 180 : 0 }}
-                    transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`relative px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-mono tracking-wider font-semibold transition-all duration-300 cursor-pointer ${
+                      isActive
+                        ? 'text-white'
+                        : 'text-[#D7E2EA]/60 hover:text-white hover:bg-white/5'
+                    }`}
                   >
-                    {/* FRONT OF CARD (Certificate Preview) */}
-                    <div
-                      className="absolute inset-0 rounded-[30px] overflow-hidden border border-[#0C0C0C]/10 bg-[#F5F5F5] shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col"
-                      style={{ backfaceVisibility: 'hidden' }}
-                    >
-                      {/* Image container */}
-                      <div className="relative flex-1 overflow-hidden bg-black/5">
-                        <ClipRevealImage
-                          src={cert.image.startsWith('/') ? `${import.meta.env.BASE_URL}${cert.image.slice(1)}` : cert.image}
-                          alt={`${cert.name} certificate`}
-                          className="w-full h-full object-cover"
-                          direction="bottom"
-                        />
-                        {/* Hover hint badge */}
-                        <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] uppercase tracking-widest font-medium bg-[#0C0C0C]/70 text-white backdrop-blur-sm">
-                          Flip ↻
-                        </span>
-                      </div>
-
-                      {/* Card footer */}
-                      <div className="p-5 bg-white border-t border-[#0C0C0C]/5">
-                        <span className="text-[#B600A8] text-xs uppercase tracking-widest font-medium block mb-1">
-                          {cert.issuer}
-                        </span>
-                        <h3 className="text-[#0C0C0C] font-semibold text-base leading-snug line-clamp-2">
-                          {cert.name}
-                        </h3>
-                      </div>
-                    </div>
-
-                    {/* BACK OF CARD (Details + Actions) */}
-                    <div
-                      className="absolute inset-0 rounded-[30px] overflow-hidden border border-[#0C0C0C]/10 bg-[#0C0C0C] text-[#D7E2EA] p-6 flex flex-col justify-between shadow-xl"
-                      style={{
-                        backfaceVisibility: 'hidden',
-                        transform: 'rotateY(180deg)',
-                      }}
-                    >
-                      <div>
-                        <span className="text-[#B600A8] text-xs uppercase tracking-widest font-medium block mb-2">
-                          {cert.issuer}
-                        </span>
-                        <h3 className="text-white font-bold text-xl leading-tight mb-4">
-                          {cert.name}
-                        </h3>
-                        <div className="w-10 h-[2px] bg-[#B600A8] mb-4" />
-                        <p className="text-[#D7E2EA]/60 text-xs leading-relaxed">
-                          Verified certification issued by {cert.issuer}. Click below to view the official credential.
-                        </p>
-                      </div>
-
-                      <div className="flex flex-col gap-3">
-                        <a
-                          href={cert.pdf.startsWith('/') ? `${import.meta.env.BASE_URL}${cert.pdf.slice(1)}` : cert.pdf}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="w-full py-3 px-4 rounded-full bg-[#B600A8] hover:bg-[#9a008e] text-white text-center text-xs uppercase tracking-widest font-medium transition-colors duration-200"
-                        >
-                          View Credential ↗
-                        </a>
-                        <button
-                          className="mt-6 text-white/40 hover:text-white/80 text-[10px] uppercase tracking-[0.2em] transition-colors"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setFlippedIndex(null);
-                          }}
-                        >
-                          Close
-                        </button>
-                      </div>
-                    </div>
-                  </motion.div>
-                </FadeIn>
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeCertPill"
+                        className="absolute inset-0 rounded-full bg-gradient-to-r from-[#B600A8] to-[#7621B0] shadow-[0_0_20px_rgba(182,0,168,0.4)] -z-10"
+                        transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                      />
+                    )}
+                    <span>{cat}</span>
+                    <span className="ml-1.5 text-[11px] opacity-70">({count})</span>
+                  </button>
                 );
               })}
             </div>
+          </div>
+        </FadeIn>
 
-            {/* Dot indicators */}
-            <div className="flex justify-center gap-2 mt-8">
-              {certifications.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => scrollToIndex(i)}
-                  className="transition-all duration-300 rounded-full cursor-pointer"
-                  style={{
-                    width: activeIndex === i ? '28px' : '8px',
-                    height: '8px',
-                    backgroundColor: activeIndex === i ? '#B600A8' : '#0C0C0C1A',
-                  }}
-                  aria-label={`Go to certificate ${i + 1}`}
-                />
-              ))}
+        {/* ─── 3D GRADIENT CAROUSEL ─── */}
+        <FadeIn delay={0.4} y={30}>
+          <GradientCarousel 
+            items={filteredCertifications}
+            cardWidth={420}
+            cardHeight={530}
+            showControls={true}
+            showIndicators={true}
+          />
+        </FadeIn>
+
+        {/* Trust Badges Footer */}
+        <FadeIn delay={0.5} y={20}>
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-xs text-[#D7E2EA]/50 font-mono">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <span>Cryptographically Verified</span>
             </div>
-
-            {/* Scroll hint — visible only on first load */}
-            <p className="text-center text-[#0C0C0C]/30 text-xs mt-4 uppercase tracking-widest font-light">
-              ← Drag or scroll to explore →
-            </p>
+            <span>•</span>
+            <div className="flex items-center gap-2">
+              <Award className="w-4 h-4 text-purple-400" />
+              <span>Official Global Issuers</span>
+            </div>
+            <span>•</span>
+            <div>
+              <span>Drag / Swipe & Keyboard Navigation Supported</span>
+            </div>
           </div>
-        ) : (
-          <div className="text-center py-20 px-6 border border-dashed border-[#0C0C0C]/15 rounded-[30px] max-w-4xl mx-auto">
-            <p className="text-[#0C0C0C]/40 text-base sm:text-lg uppercase tracking-widest font-light">
-              No certificates added yet
-            </p>
-          </div>
-        )}
-      </section>
-    </>
+        </FadeIn>
+      </div>
+    </section>
   );
 };
 
 export default CertificationsSection;
-

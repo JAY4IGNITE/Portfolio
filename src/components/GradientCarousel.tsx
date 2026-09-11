@@ -18,6 +18,7 @@ export interface GradientCarouselItem {
   issuer: string;
   recipient: string;
   date: string;
+  category?: string;
   image: string;
   pdf: string;
   verifyUrl?: string;
@@ -34,7 +35,6 @@ interface GradientCarouselProps {
   items: GradientCarouselItem[];
   cardWidth?: number;
   cardHeight?: number;
-  gradientIntensity?: number;
   showControls?: boolean;
   showIndicators?: boolean;
 }
@@ -48,10 +48,20 @@ export const GradientCarousel = ({
 }: GradientCarouselProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedItem, setSelectedItem] = useState<GradientCarouselItem | null>(null);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
   const containerRef = useRef<HTMLDivElement>(null);
   const [dragStartX, setDragStartX] = useState<number | null>(null);
 
-  const activeItem = items[activeIndex] || items[0];
+  // Resize listener
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Safe active item fallback
+  const safeActiveIndex = Math.min(activeIndex, Math.max(0, items.length - 1));
+  const activeItem = items[safeActiveIndex] || items[0];
 
   const handleNext = useCallback(() => {
     setActiveIndex((prev) => (prev + 1) % items.length);
@@ -106,10 +116,12 @@ export const GradientCarousel = ({
 
   if (!items || items.length === 0) return null;
 
+  const dynamicWidth = Math.min(cardWidth, windowWidth - 48);
+
   return (
     <div 
       ref={containerRef}
-      className="relative w-full overflow-hidden py-10 select-none"
+      className="relative w-full overflow-hidden py-8 select-none"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onMouseDown={handleMouseDown}
@@ -119,22 +131,26 @@ export const GradientCarousel = ({
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
         {/* Primary Ambient Spotlight */}
         <motion.div
+          key={`primary-${activeItem?.id || 'default'}`}
+          initial={{ opacity: 0 }}
           animate={{
             background: `radial-gradient(circle, ${activeItem.gradient.primary} 0%, ${activeItem.gradient.secondary} 40%, transparent 70%)`,
             opacity: 0.28,
-            scale: [1, 1.06, 1],
+            scale: [1, 1.05, 1],
           }}
-          transition={{ duration: 1.2, ease: 'easeInOut' }}
-          className="w-[700px] sm:w-[900px] h-[550px] sm:h-[650px] rounded-full blur-[140px] will-change-transform"
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
+          className="w-[700px] sm:w-[950px] h-[550px] sm:h-[650px] rounded-full blur-[140px] will-change-transform"
         />
 
         {/* Secondary Color Flare */}
         <motion.div
+          key={`secondary-${activeItem?.id || 'default'}`}
+          initial={{ opacity: 0 }}
           animate={{
             background: `radial-gradient(ellipse at center, ${activeItem.gradient.secondary} 0%, transparent 65%)`,
             opacity: 0.22,
           }}
-          transition={{ duration: 1.2, ease: 'easeInOut' }}
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
           className="absolute -top-12 w-[600px] h-[400px] rounded-full blur-[120px]"
         />
       </div>
@@ -154,7 +170,7 @@ export const GradientCarousel = ({
         >
           {items.map((item, index) => {
             // Distance from active card
-            let offset = index - activeIndex;
+            let offset = index - safeActiveIndex;
             // Wrap around for smooth cyclical feel
             const halfLen = items.length / 2;
             if (offset > halfLen) offset -= items.length;
@@ -167,7 +183,7 @@ export const GradientCarousel = ({
 
             // 3D Transforms based on distance
             const rotateY = offset * -24;
-            const translateX = offset * (cardWidth * 0.72);
+            const translateX = offset * (dynamicWidth * 0.72);
             const translateZ = -Math.abs(offset) * 160;
             const scale = 1 - Math.abs(offset) * 0.12;
             const opacity = isActive ? 1 : Math.max(0.4, 0.85 - Math.abs(offset) * 0.3);
@@ -189,11 +205,11 @@ export const GradientCarousel = ({
                   opacity,
                 }}
                 transition={{
-                  duration: 0.65,
+                  duration: 0.6,
                   ease: [0.25, 1, 0.5, 1],
                 }}
                 style={{
-                  width: `${Math.min(cardWidth, window.innerWidth - 48)}px`,
+                  width: `${dynamicWidth}px`,
                   height: `${cardHeight}px`,
                   position: 'absolute',
                   transformStyle: 'preserve-3d',
@@ -218,7 +234,7 @@ export const GradientCarousel = ({
                     <img
                       src={`${import.meta.env.BASE_URL}${item.image.replace(/^\//, '')}`}
                       alt={item.title}
-                      className="w-full h-full object-contain p-2.5 transition-transform duration-700 group-hover:scale-[1.03]"
+                      className="w-full h-full object-contain p-3 transition-transform duration-700 group-hover:scale-[1.03]"
                       loading="lazy"
                     />
 
@@ -252,7 +268,7 @@ export const GradientCarousel = ({
                   </div>
 
                   {/* Card Content Footer */}
-                  <div className="p-6 flex-1 flex flex-col justify-between bg-gradient-to-b from-[#111114]/95 to-[#0C0C0E]">
+                  <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between bg-gradient-to-b from-[#111114]/95 to-[#0C0C0E]">
                     <div>
                       {/* Date & Verification status */}
                       <div className="flex items-center justify-between text-xs text-[#D7E2EA]/50 font-mono mb-2">
@@ -267,14 +283,14 @@ export const GradientCarousel = ({
                       </div>
 
                       {/* Course / Certification Name */}
-                      <h3 className="text-xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-[#D7E2EA] transition-all line-clamp-2 leading-snug">
+                      <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-[#D7E2EA] transition-all line-clamp-2 leading-snug">
                         {item.title}
                       </h3>
                     </div>
 
                     {/* Tags & Action Buttons */}
-                    <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between gap-2">
-                      <div className="flex flex-wrap gap-1.5 max-w-[60%] overflow-hidden">
+                    <div className="pt-3.5 border-t border-white/[0.06] flex items-center justify-between gap-2">
+                      <div className="flex flex-wrap gap-1.5 max-w-[62%] overflow-hidden">
                         {item.tags.slice(0, 2).map((tag, tIdx) => (
                           <span
                             key={tIdx}
@@ -293,7 +309,7 @@ export const GradientCarousel = ({
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="p-2 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] text-[#D7E2EA] hover:text-white transition-all duration-200 border border-white/10 hover:border-white/20"
+                            className="p-2 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] text-[#D7E2EA] hover:text-white transition-all duration-200 border border-white/10 hover:border-white/20 cursor-pointer"
                             title="Verify Online"
                           >
                             <ExternalLink className="w-4 h-4" />
@@ -306,7 +322,7 @@ export const GradientCarousel = ({
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="p-2 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] text-[#D7E2EA] hover:text-white transition-all duration-200 border border-white/10 hover:border-white/20"
+                          className="p-2 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] text-[#D7E2EA] hover:text-white transition-all duration-200 border border-white/10 hover:border-white/20 cursor-pointer"
                           title="Download Certificate PDF"
                         >
                           <Download className="w-4 h-4" />
@@ -334,14 +350,14 @@ export const GradientCarousel = ({
 
           {/* Indicator Pills */}
           {showIndicators && (
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md">
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md max-w-[280px] sm:max-w-none overflow-x-auto hide-scrollbar">
               {items.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setActiveIndex(i)}
                   className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    i === activeIndex
-                      ? 'w-7 bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]'
+                    i === safeActiveIndex
+                      ? 'w-6 bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]'
                       : 'w-2 bg-white/25 hover:bg-white/50'
                   }`}
                   aria-label={`Jump to certificate ${i + 1}`}
@@ -417,7 +433,7 @@ export const GradientCarousel = ({
                       href={selectedItem.verifyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.08] hover:bg-white/[0.16] text-white border border-white/15 text-xs sm:text-sm font-medium tracking-wide transition-all duration-200 shadow-md"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.08] hover:bg-white/[0.16] text-white border border-white/15 text-xs sm:text-sm font-medium tracking-wide transition-all duration-200 shadow-md cursor-pointer"
                     >
                       <ExternalLink className="w-4 h-4" />
                       Verify Online
@@ -429,7 +445,7 @@ export const GradientCarousel = ({
                     download
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#B600A8] to-[#7621B0] hover:opacity-95 text-white text-xs sm:text-sm font-medium tracking-wide transition-all duration-200 shadow-lg"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#B600A8] to-[#7621B0] hover:opacity-95 text-white text-xs sm:text-sm font-medium tracking-wide transition-all duration-200 shadow-lg cursor-pointer"
                   >
                     <Download className="w-4 h-4" />
                     Download PDF

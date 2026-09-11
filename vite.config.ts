@@ -6,6 +6,9 @@ export default defineConfig({
   plugins: [react()],
   base: '/',
   server: {
+    watch: {
+      ignored: ['**/*.pdf'],
+    },
     proxy: {
       '/api/codechef': {
         target: 'https://codeindex.vercel.app',
