@@ -3,57 +3,49 @@ import FadeIn from '../components/FadeIn';
 import GitHubHeatmap from '../components/GitHubHeatmap';
 import { BookOpen, Star, GitFork, Clock, ArrowUpRight } from 'lucide-react';
 
-interface GitHubProfile {
-  name: string;
-  login: string;
-  avatar_url: string;
-  bio: string;
-  followers: number;
-  following: number;
-  public_repos: number;
-  html_url: string;
-}
-
-interface GitHubRepo {
-  name: string;
-  html_url: string;
-  description: string;
-  language: string;
-  stargazers_count: number;
-  forks_count: number;
-  updated_at: string;
-}
+import type { GitHubProfile, GitHubRepo } from '@/types/github';
 
 export const GitHubActivitySection = () => {
   const [profile, setProfile] = useState<GitHubProfile | null>(null);
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchGitHubData = async () => {
-    const username = 'JAY4IGNITE';
-    try {
-      const [profileRes, reposRes] = await Promise.all([
-        fetch(`https://api.github.com/users/${username}`).then((res) => {
-          if (!res.ok) throw new Error('Failed to fetch profile');
-          return res.json();
-        }),
-        fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`).then((res) => {
-          if (!res.ok) throw new Error('Failed to fetch repos');
-          return res.json();
-        }),
-      ]);
-
-      setProfile(profileRes);
-      setRepos(reposRes);
-    } catch (e) {
-      console.error('Failed to load GitHub data:', e);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    fetchGitHubData();
+    let isMounted = true;
+    const username = 'JAY4IGNITE';
+
+    const loadGitHubData = async () => {
+      try {
+        const [profileRes, reposRes] = await Promise.all([
+          fetch(`https://api.github.com/users/${username}`).then((res) => {
+            if (!res.ok) throw new Error('Failed to fetch profile');
+            return res.json();
+          }),
+          fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`).then((res) => {
+            if (!res.ok) throw new Error('Failed to fetch repos');
+            return res.json();
+          }),
+        ]);
+
+        if (!isMounted) return;
+        setProfile(profileRes);
+        setRepos(reposRes);
+      } catch (e) {
+        if (isMounted) {
+          console.error('Failed to load GitHub data:', e);
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    void loadGitHubData();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (

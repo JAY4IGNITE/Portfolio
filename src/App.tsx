@@ -3,7 +3,7 @@ import MarqueeSection from './sections/MarqueeSection';
 import AboutSection from './sections/AboutSection';
 import ServicesSection from './sections/ServicesSection';
 import JourneySection from './sections/JourneySection';
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense, useState, useCallback } from 'react';
 import { useScroll, useSpring, motion, useTransform } from 'framer-motion';
 
 const TechStackSection = lazy(() => import('./sections/TechStackSection'));
@@ -66,6 +66,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isZoomingOut, setIsZoomingOut] = useState(false);
 
+  const handlePreloaderComplete = useCallback(() => setIsLoading(false), []);
+  const handleStartZoomOut = useCallback(() => setIsZoomingOut(true), []);
+
   // Map approximate scroll positions to colors
   const backgroundColor = useTransform(
     scrollYProgress,
@@ -90,8 +93,8 @@ function App() {
     <motion.div className="min-h-screen text-[#D7E2EA] overflow-x-clip font-kanit" style={{ backgroundColor }}>
       {isLoading && (
         <Preloader 
-          onComplete={() => setIsLoading(false)} 
-          onStartZoomOut={() => setIsZoomingOut(true)}
+          onComplete={handlePreloaderComplete} 
+          onStartZoomOut={handleStartZoomOut}
         />
       )}
       

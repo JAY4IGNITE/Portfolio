@@ -20,7 +20,9 @@ interface Particle {
 
 const CustomCursor = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(pointer: coarse)').matches : false
+  );
   const [variant, setVariant] = useState<CursorVariant>('default');
   const [customText, setCustomText] = useState('');
 
@@ -161,9 +163,18 @@ const CustomCursor = () => {
   };
 
   useEffect(() => {
-    const isTouch = window.matchMedia('(pointer: coarse)').matches;
-    setIsTouchDevice(isTouch);
-    if (isTouch) return;
+    if (typeof window === 'undefined') return;
+    const mediaQuery = window.matchMedia('(pointer: coarse)');
+    const handleMediaChange = (e: MediaQueryListEvent) => {
+      setIsTouchDevice(e.matches);
+    };
+    mediaQuery.addEventListener?.('change', handleMediaChange);
+
+    if (mediaQuery.matches) {
+      return () => {
+        mediaQuery.removeEventListener?.('change', handleMediaChange);
+      };
+    }
 
     // Resize canvas to cover screen
     const handleResize = () => {
@@ -236,6 +247,7 @@ const CustomCursor = () => {
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('pointerover', handlePointerOver);
       document.removeEventListener('pointerout', handlePointerOut);
+      mediaQuery.removeEventListener?.('change', handleMediaChange);
     };
   }, [mouseX, mouseY, isVisible, variant]);
 

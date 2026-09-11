@@ -386,7 +386,6 @@ export default function ParticleField({ text = 'KRISHNA', className = '' }: Prop
         }
       };
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [text]);
 
   return (

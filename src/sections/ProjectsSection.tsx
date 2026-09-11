@@ -2,34 +2,10 @@ import { useRef, useState, useEffect, memo } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useInView } from 'framer-motion';
 import ScrollRevealText from '../components/ScrollRevealText';
 
-export interface ProjectData {
-  number: string;
-  name: string;
-  category: string;
-  tech: string[];
-  description: string;
-  features: string[];
-  challenges: string;
-  learnings: string;
-  link: string;
-  images: string[];
-}
+import type { ProjectData } from '@/types/portfolio';
+import { projects } from '@/data/projects';
 
-const projects: ProjectData[] = [
-  // Add your projects here. Example format:
-  // {
-  //   number: '01',
-  //   name: 'Project Title',
-  //   category: 'Web / App / AI',
-  //   tech: ['React', 'TypeScript', 'Tailwind'],
-  //   description: 'Description of your project...',
-  //   features: ['Feature 1', 'Feature 2'],
-  //   challenges: 'Challenges faced and solutions...',
-  //   learnings: 'What you learned...',
-  //   link: 'https://github.com/...',
-  //   images: ['/assets/Projects/...'],
-  // },
-];
+export type { ProjectData };
 
 
 

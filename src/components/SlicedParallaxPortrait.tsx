@@ -92,9 +92,19 @@ export default function SlicedParallaxPortrait({ scrollYProgress }: Props) {
   const glowScale = useTransform(progress, [0, 0.3], [1, 1.3]);
 
   // Check if device has mouse (no reveal on touch)
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(() =>
+    typeof window !== 'undefined' ? !window.matchMedia('(hover: hover)').matches : false
+  );
   useEffect(() => {
-    setIsTouchDevice(!window.matchMedia('(hover: hover)').matches);
+    if (typeof window === 'undefined') return;
+    const mediaQuery = window.matchMedia('(hover: hover)');
+    const handleMediaChange = (e: MediaQueryListEvent) => {
+      setIsTouchDevice(!e.matches);
+    };
+    mediaQuery.addEventListener?.('change', handleMediaChange);
+    return () => {
+      mediaQuery.removeEventListener?.('change', handleMediaChange);
+    };
   }, []);
 
   const baseSrc = `${import.meta.env.BASE_URL}assets/Krishna.png`;

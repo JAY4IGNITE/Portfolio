@@ -28,7 +28,7 @@ export default function Preloader({ onComplete, onStartZoomOut }: { onComplete: 
       clearTimeout(t2);
       clearTimeout(t3);
     };
-  }, [onComplete]);
+  }, [onComplete, onStartZoomOut]);
 
   return (
     <AnimatePresence>

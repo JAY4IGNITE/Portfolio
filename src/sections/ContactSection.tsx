@@ -194,10 +194,11 @@ const ContactSection = () => {
 
       setStatus('success');
       setFormData({ name: '', email: '', message: '' });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Contact submission error:', error);
       setStatus('error');
-      setErrorMessage(error.message || 'Something went wrong. Please try again.');
+      const message = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
+      setErrorMessage(message);
     }
   };
 

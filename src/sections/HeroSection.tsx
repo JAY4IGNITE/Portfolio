@@ -27,19 +27,10 @@ import {
 } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import useActiveSection from '../hooks/useActiveSection';
+import { navLinks } from '@/data/navigation';
 
 const personalEmail = import.meta.env.VITE_PERSONAL_EMAIL || 'jayasaikrishnavasamsetti@gmail.com';
 const personalPhone = import.meta.env.VITE_PERSONAL_PHONE || '+91 9030649777';
-
-const navLinks = [
-  { label: 'Home', href: '#' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Journey', href: '#journey' },
-  { label: 'Tech Stack', href: '#tech-stack' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
-];
 
 const HeroSection = () => {
   const [isOpen, setIsOpen] = useState(false);

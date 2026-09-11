@@ -340,10 +340,6 @@ const WarpText = ({
 
     let renderer: Renderer;
     let gl: OGLRenderingContext;
-    let program: Program;
-    let geometry: Triangle;
-    let mesh: Mesh;
-    let texture: Texture;
     let resizeObserver: ResizeObserver | null = null;
     let intersectionObserver: IntersectionObserver | null = null;
     let raf = 0;
@@ -381,7 +377,7 @@ const WarpText = ({
     canvas.setAttribute('aria-hidden', 'true');
     container.appendChild(canvas);
 
-    texture = new Texture(gl, {
+    const texture = new Texture(gl, {
       generateMipmaps: false,
       minFilter: gl.LINEAR,
       magFilter: gl.LINEAR,
@@ -389,8 +385,8 @@ const WarpText = ({
       wrapT: gl.CLAMP_TO_EDGE
     });
 
-    geometry = new Triangle(gl);
-    program = new Program(gl, {
+    const geometry = new Triangle(gl);
+    const program = new Program(gl, {
       vertex,
       fragment,
       transparent: true,
@@ -412,7 +408,7 @@ const WarpText = ({
         uMotion: { value: reduceMotion ? 0 : 1 }
       }
     });
-    mesh = new Mesh(gl, { geometry, program });
+    const mesh = new Mesh(gl, { geometry, program });
 
     const renderOnce = () => {
       if (disposed || contextLost) return;
