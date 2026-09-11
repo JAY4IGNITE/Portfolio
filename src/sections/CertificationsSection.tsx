@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import FadeIn from '../components/FadeIn';
 import ScrollRevealText from '../components/ScrollRevealText';
 import GradientCarousel, { type GradientCarouselItem } from '../components/GradientCarousel';
@@ -448,17 +448,7 @@ export const certificationsData: GradientCarouselItem[] = [
   },
 ];
 
-const categories = [
-  'ALL',
-  'AI & Cloud',
-  'Web & Full Stack',
-  'Programming & DSA',
-  'DevOps & Systems',
-  'Databases',
-];
-
 const CertificationsSection = () => {
-  const [selectedCategory, setSelectedCategory] = useState('ALL');
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -466,10 +456,6 @@ const CertificationsSection = () => {
   });
 
   const headerY = useTransform(scrollYProgress, [0, 1], [0, -50]);
-
-  const filteredCertifications = selectedCategory === 'ALL'
-    ? certificationsData
-    : certificationsData.filter((c) => c.category === selectedCategory);
 
   return (
     <section
@@ -515,46 +501,10 @@ const CertificationsSection = () => {
           </FadeIn>
         </motion.div>
 
-        {/* Category Filter Pills */}
-        <FadeIn delay={0.35} y={20}>
-          <div className="flex justify-center mb-8 sm:mb-12">
-            <div className="inline-flex flex-wrap justify-center items-center gap-1.5 p-1.5 rounded-full border border-white/10 bg-[#121214]/80 backdrop-blur-xl max-w-full">
-              {categories.map((cat) => {
-                const isActive = selectedCategory === cat;
-                const count = cat === 'ALL'
-                  ? certificationsData.length
-                  : certificationsData.filter((c) => c.category === cat).length;
-
-                return (
-                  <button
-                    key={cat}
-                    onClick={() => setSelectedCategory(cat)}
-                    className={`relative px-3.5 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-mono tracking-wider font-semibold transition-all duration-300 cursor-pointer ${
-                      isActive
-                        ? 'text-white'
-                        : 'text-[#D7E2EA]/60 hover:text-white hover:bg-white/5'
-                    }`}
-                  >
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeCertPill"
-                        className="absolute inset-0 rounded-full bg-gradient-to-r from-[#B600A8] to-[#7621B0] shadow-[0_0_20px_rgba(182,0,168,0.4)] -z-10"
-                        transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-                      />
-                    )}
-                    <span>{cat}</span>
-                    <span className="ml-1.5 text-[11px] opacity-70">({count})</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </FadeIn>
-
         {/* ─── 3D GRADIENT CAROUSEL ─── */}
-        <FadeIn delay={0.4} y={30}>
+        <FadeIn delay={0.35} y={30}>
           <GradientCarousel 
-            items={filteredCertifications}
+            items={certificationsData}
             cardWidth={430}
             cardHeight={540}
             showControls={true}
