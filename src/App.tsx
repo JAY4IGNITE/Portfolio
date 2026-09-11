@@ -119,7 +119,7 @@ function App() {
         <Suspense fallback={<SectionSkeleton bg="#0C0C0C" />}>
           <ProjectsSection />
         </Suspense>
-        <Suspense fallback={<SectionSkeleton bg="#FFFFFF" />}>
+        <Suspense fallback={<SectionSkeleton bg="#0C0C0C" />}>
           <CertificationsSection />
         </Suspense>
         <Suspense fallback={<StatsSkeleton />}>
