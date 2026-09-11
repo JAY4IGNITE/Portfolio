@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import FadeIn from '../components/FadeIn';
+import GitHubHeatmap from '../components/GitHubHeatmap';
 import { BookOpen, Star, GitFork, Clock, ArrowUpRight } from 'lucide-react';
 
 interface GitHubProfile {
@@ -72,7 +73,12 @@ export const GitHubActivitySection = () => {
             My open source contributions
           </p>
         </FadeIn>
- 
+
+        {/* Interactive GitHub Heatmap with Snake Eater & Shining Modes */}
+        <FadeIn delay={0.05} y={30} className="mb-12">
+          <GitHubHeatmap username="JAY4IGNITE" />
+        </FadeIn>
+
         {loading ? (
           <div className="flex flex-col items-center justify-center py-20">
             <div className="w-12 h-12 rounded-full border-2 border-[#0C0C0C]/10 border-t-[#B600A8] animate-spin" />
