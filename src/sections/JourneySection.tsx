@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { 
   GraduationCap, 
@@ -155,10 +155,7 @@ const highlights = [
   { label: 'Production Scale', value: '500+ Users', icon: Flame, color: 'text-cyan-400' },
 ];
 
-const years = ['ALL', '2024', '2025', '2026'];
-
 const JourneySection = () => {
-  const [selectedYear, setSelectedYear] = useState('ALL');
   const sectionRef = useRef<HTMLElement>(null);
   
   const { scrollYProgress } = useScroll({
@@ -168,9 +165,7 @@ const JourneySection = () => {
 
   const beamHeight = useTransform(scrollYProgress, [0.08, 0.85], ['0%', '100%']);
 
-  const filteredMilestones = selectedYear === 'ALL'
-    ? milestones
-    : milestones.filter((m) => m.year === selectedYear);
+  const filteredMilestones = milestones;
 
   return (
     <section
@@ -249,36 +244,6 @@ const JourneySection = () => {
           </div>
         </FadeIn>
 
-        {/* Year Filter Switcher */}
-        <FadeIn delay={0.4} y={20}>
-          <div className="flex justify-center mb-16 sm:mb-24">
-            <div className="inline-flex items-center gap-1.5 p-1.5 rounded-full border border-white/10 bg-[#121214]/80 backdrop-blur-xl">
-              {years.map((year) => {
-                const isActive = selectedYear === year;
-                return (
-                  <button
-                    key={year}
-                    onClick={() => setSelectedYear(year)}
-                    className={`relative px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-mono tracking-wider font-semibold transition-all duration-300 ${
-                      isActive
-                        ? 'text-white'
-                        : 'text-[#D7E2EA]/60 hover:text-white hover:bg-white/5'
-                    }`}
-                  >
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeYearPill"
-                        className="absolute inset-0 rounded-full bg-gradient-to-r from-[#B600A8] to-[#7621B0] shadow-[0_0_20px_rgba(182,0,168,0.4)] -z-10"
-                        transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-                      />
-                    )}
-                    {year === 'ALL' ? 'All Milestones' : year}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </FadeIn>
 
         {/* Timeline Stream */}
         <div className="relative">
