@@ -510,7 +510,7 @@ const CertificationsSection = () => {
             showControls={true}
             showIndicators={true}
             autoScroll={true}
-            autoScrollInterval={3000}
+            autoScrollInterval={1800}
             pauseOnHover={true}
           />
         </FadeIn>

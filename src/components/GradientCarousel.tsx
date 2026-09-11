@@ -228,7 +228,7 @@ export const GradientCarousel = ({
                   opacity,
                 }}
                 transition={{
-                  duration: 0.6,
+                  duration: 0.45,
                   ease: [0.25, 1, 0.5, 1],
                 }}
                 style={{
