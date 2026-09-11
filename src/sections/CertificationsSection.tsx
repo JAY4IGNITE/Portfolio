@@ -3,7 +3,7 @@ import FadeIn from '../components/FadeIn';
 import ScrollRevealText from '../components/ScrollRevealText';
 import GradientCarousel, { type GradientCarouselItem } from '../components/GradientCarousel';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Award, ShieldCheck, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 export const certificationsData: GradientCarouselItem[] = [
   // ─── 1. Oracle Generative AI Professional ───
@@ -513,25 +513,6 @@ const CertificationsSection = () => {
             autoScrollInterval={1800}
             pauseOnHover={true}
           />
-        </FadeIn>
-
-        {/* Trust Badges Footer */}
-        <FadeIn delay={0.5} y={20}>
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-xs text-[#D7E2EA]/50 font-mono">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>Official Institutional Credentials</span>
-            </div>
-            <span>•</span>
-            <div className="flex items-center gap-2">
-              <Award className="w-4 h-4 text-purple-400" />
-              <span>Oracle • Red Hat • Cisco • Infosys • Google</span>
-            </div>
-            <span>•</span>
-            <div>
-              <span>Interactive 3D Carousel with Drag, Swipe & Fullscreen PDF View</span>
-            </div>
-          </div>
         </FadeIn>
       </div>
     </section>
