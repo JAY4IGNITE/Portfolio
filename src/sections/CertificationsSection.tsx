@@ -408,44 +408,6 @@ export const certificationsData: GradientCarouselItem[] = [
       accentGlow: '#F59E0B',
     },
   },
-
-  // ─── 23. Building with Claude API ───
-  {
-    id: 'anthropic-claude-api',
-    title: 'Building with Claude API',
-    issuer: 'Anthropic',
-    recipient: 'Vasamsetti Jaya Sai Krishna',
-    date: '2025',
-    category: 'AI & Cloud',
-    image: '/assets/certificates/Building_With_Claude_Api.png',
-    pdf: '/assets/certificates/Building_With_Claude_Api.pdf',
-    tags: ['Claude API', 'LLM Agents', 'Anthropic', 'Prompt Engineering'],
-    gradient: {
-      primary: '#D97706',
-      secondary: '#9333EA',
-      ambient: 'rgba(217, 119, 6, 0.4)',
-      accentGlow: '#D97706',
-    },
-  },
-
-  // ─── 24. Introduction to Model Context Protocol ───
-  {
-    id: 'anthropic-mcp-protocol',
-    title: 'Introduction to Model Context Protocol (MCP)',
-    issuer: 'Anthropic',
-    recipient: 'Vasamsetti Jaya Sai Krishna',
-    date: '2025',
-    category: 'AI & Cloud',
-    image: '/assets/certificates/Introduction_To_Model_Context_Protocol.png',
-    pdf: '/assets/certificates/Introduction_To_Model_Context_Protocol.pdf',
-    tags: ['MCP Protocol', 'Agent Tooling', 'Anthropic'],
-    gradient: {
-      primary: '#7C3AED',
-      secondary: '#06B6D4',
-      ambient: 'rgba(124, 58, 237, 0.4)',
-      accentGlow: '#7C3AED',
-    },
-  },
 ];
 
 const CertificationsSection = () => {

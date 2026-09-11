@@ -253,13 +253,16 @@ export const GradientCarousel = ({
                   }}
                 >
                   {/* Certificate Image Frame */}
-                  <div className="relative w-full h-[58%] overflow-hidden bg-black/40 border-b border-white/[0.08]">
-                    <img
-                      src={`${import.meta.env.BASE_URL}${item.image.replace(/^\//, '')}`}
-                      alt={item.title}
-                      className="w-full h-full object-contain p-3 transition-transform duration-700 group-hover:scale-[1.03]"
-                      loading="lazy"
-                    />
+                  <div className="relative w-full h-[58%] overflow-hidden bg-black/60 border-b border-white/[0.08] flex items-center justify-center p-3">
+                    <div className="relative w-full h-full flex items-center justify-center rounded-xl overflow-hidden bg-white/95 shadow-inner">
+                      <img
+                        src={`${import.meta.env.BASE_URL}${item.image.replace(/^\//, '')}`}
+                        alt={item.title}
+                        className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-[1.03]"
+                        loading="eager"
+                        decoding="async"
+                      />
+                    </div>
 
                     {/* Gradient Overlay Accent */}
                     <div 
