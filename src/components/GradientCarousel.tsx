@@ -37,6 +37,9 @@ interface GradientCarouselProps {
   cardHeight?: number;
   showControls?: boolean;
   showIndicators?: boolean;
+  autoScroll?: boolean;
+  autoScrollInterval?: number;
+  pauseOnHover?: boolean;
 }
 
 export const GradientCarousel = ({
@@ -45,10 +48,14 @@ export const GradientCarousel = ({
   cardHeight = 520,
   showControls = true,
   showIndicators = true,
+  autoScroll = true,
+  autoScrollInterval = 3200,
+  pauseOnHover = true,
 }: GradientCarouselProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedItem, setSelectedItem] = useState<GradientCarouselItem | null>(null);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+  const [isHovered, setIsHovered] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [dragStartX, setDragStartX] = useState<number | null>(null);
 
@@ -84,6 +91,20 @@ export const GradientCarousel = ({
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleNext, handlePrev, selectedItem]);
+
+  // Auto-scroll timer
+  useEffect(() => {
+    if (!autoScroll || items.length <= 1) return;
+    if (pauseOnHover && isHovered) return;
+    if (selectedItem !== null) return; // Pause while modal is active
+    if (dragStartX !== null) return; // Pause during drag
+
+    const timer = setInterval(() => {
+      handleNext();
+    }, autoScrollInterval);
+
+    return () => clearInterval(timer);
+  }, [autoScroll, autoScrollInterval, pauseOnHover, isHovered, selectedItem, dragStartX, items.length, handleNext]);
 
   // Touch & Mouse Drag
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -122,6 +143,8 @@ export const GradientCarousel = ({
     <div 
       ref={containerRef}
       className="relative w-full overflow-hidden py-8 select-none"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onMouseDown={handleMouseDown}

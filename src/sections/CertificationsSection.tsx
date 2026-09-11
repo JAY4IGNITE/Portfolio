@@ -509,6 +509,9 @@ const CertificationsSection = () => {
             cardHeight={540}
             showControls={true}
             showIndicators={true}
+            autoScroll={true}
+            autoScrollInterval={3000}
+            pauseOnHover={true}
           />
         </FadeIn>
 
