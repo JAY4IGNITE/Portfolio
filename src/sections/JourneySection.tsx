@@ -189,14 +189,6 @@ const JourneySection = () => {
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header Block */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <FadeIn delay={0.1} y={20}>
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#B600A8] animate-pulse" />
-              <span className="text-[#D7E2EA]/70 text-xs sm:text-sm font-mono tracking-widest uppercase">
-                Interactive Career Roadmap
-              </span>
-            </div>
-          </FadeIn>
 
           <FadeIn delay={0.2} y={25}>
             <h2

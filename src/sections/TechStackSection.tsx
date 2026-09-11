@@ -1,6 +1,6 @@
 import FadeIn from '../components/FadeIn';
 import { motion } from 'framer-motion';
-import { Palette, Server, Wrench, Database, Cpu, Gamepad2 } from 'lucide-react';
+import { Palette, Server, Wrench, Database, Cpu, Sparkles } from 'lucide-react';
 
 interface SkillCategory {
   title: string;
@@ -11,40 +11,40 @@ interface SkillCategory {
 
 const skillCategories: SkillCategory[] = [
   {
-    title: 'Frontend',
+    title: 'Frontend Development',
     icon: <Palette className="w-5 h-5 sm:w-6 sm:h-6" />,
     color: '#B600A8',
-    skills: ['HTML5', 'CSS3', 'JavaScript', 'TypeScript', 'React', 'Tailwind CSS', 'Framer Motion', 'Three.js', 'Vite'],
-  },
-  {
-    title: 'Programming Languages',
-    icon: <Cpu className="w-5 h-5 sm:w-6 sm:h-6" />,
-    color: '#7621B0',
-    skills: ['Java', 'Python', 'C', 'C++'],
+    skills: ['React.js', 'TypeScript', 'JavaScript (ES6+)', 'Tailwind CSS', 'HTML5 & CSS3', 'Vite', 'Framer Motion', 'Responsive UI'],
   },
   {
     title: 'Backend & Frameworks',
     icon: <Server className="w-5 h-5 sm:w-6 sm:h-6" />,
     color: '#2563EB',
-    skills: ['Node.js', 'Next.js', 'Java Swing', 'AWT', 'JDBC', 'OOP'],
+    skills: ['Node.js', 'Express.js', 'FastAPI', 'RESTful APIs', 'JWT Auth', 'OAuth 2.0', 'JDBC', 'Microservices'],
   },
   {
-    title: 'Databases',
+    title: 'Programming Languages',
+    icon: <Cpu className="w-5 h-5 sm:w-6 sm:h-6" />,
+    color: '#7621B0',
+    skills: ['C++', 'Java', 'Python', 'C', 'SQL / PL-SQL', 'Data Structures & Algorithms'],
+  },
+  {
+    title: 'Databases & Storage',
     icon: <Database className="w-5 h-5 sm:w-6 sm:h-6" />,
     color: '#059669',
-    skills: ['MySQL', 'SQL'],
+    skills: ['MongoDB', 'PostgreSQL', 'MySQL', 'Supabase', 'Relational Schema', 'Query Optimization'],
   },
   {
-    title: 'Tools & Platforms',
+    title: 'AI, Cloud & DevOps',
+    icon: <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" />,
+    color: '#D97706',
+    skills: ['NVIDIA NIM (Llama 3)', 'OCI Generative AI', 'Red Hat Linux (RHCSA)', 'Cloud Deployment', 'Prompt Engineering'],
+  },
+  {
+    title: 'Tools & Ecosystem',
     icon: <Wrench className="w-5 h-5 sm:w-6 sm:h-6" />,
     color: '#BE4C00',
-    skills: ['Git', 'GitHub', 'VS Code', 'Red Hat Linux', 'LaTeX'],
-  },
-  {
-    title: 'Python & Game Dev',
-    icon: <Gamepad2 className="w-5 h-5 sm:w-6 sm:h-6" />,
-    color: '#D97706',
-    skills: ['Pygame', 'OOP Design', 'Game Physics'],
+    skills: ['Git & GitHub', 'VS Code', 'Postman', 'Jupyter Notebook', 'Chrome Extension API', 'Linux Bash / CLI'],
   },
 ];
 

@@ -8,23 +8,26 @@ interface TechItem {
 }
 
 const row1Tech: TechItem[] = [
-  { name: 'HTML5', category: 'Frontend', color: '#E34F26', glowColor: 'rgba(227, 79, 38, 0.15)' },
-  { name: 'CSS3', category: 'Frontend', color: '#1572B6', glowColor: 'rgba(21, 114, 182, 0.15)' },
-  { name: 'JavaScript', category: 'Frontend', color: '#F7DF1E', glowColor: 'rgba(247, 223, 30, 0.15)' },
-  { name: 'Java', category: 'Backend', color: '#007396', glowColor: 'rgba(0, 115, 150, 0.15)' },
-  { name: 'Python', category: 'Backend', color: '#3776AB', glowColor: 'rgba(55, 118, 171, 0.15)' },
-  { name: 'C Language', category: 'Backend', color: '#A8B9CC', glowColor: 'rgba(168, 185, 204, 0.15)' },
-  { name: 'React', category: 'Frontend', color: '#61DAFB', glowColor: 'rgba(97, 218, 251, 0.15)' },
+  { name: 'React.js', category: 'Frontend', color: '#61DAFB', glowColor: 'rgba(97, 218, 251, 0.2)' },
+  { name: 'TypeScript', category: 'Language', color: '#3178C6', glowColor: 'rgba(49, 120, 198, 0.2)' },
+  { name: 'JavaScript', category: 'Frontend', color: '#F7DF1E', glowColor: 'rgba(247, 223, 30, 0.2)' },
+  { name: 'Python', category: 'AI & Backend', color: '#38BDF8', glowColor: 'rgba(56, 189, 248, 0.2)' },
+  { name: 'C++', category: 'Algorithms', color: '#00599C', glowColor: 'rgba(0, 89, 156, 0.2)' },
+  { name: 'Java', category: 'OOP & Systems', color: '#F97316', glowColor: 'rgba(249, 115, 22, 0.2)' },
+  { name: 'FastAPI', category: 'Backend', color: '#059669', glowColor: 'rgba(5, 150, 105, 0.2)' },
+  { name: 'Node.js', category: 'Runtime', color: '#22C55E', glowColor: 'rgba(34, 197, 94, 0.2)' },
 ];
 
 const row2Tech: TechItem[] = [
-  { name: 'MySQL', category: 'Database', color: '#4479A1', glowColor: 'rgba(68, 121, 161, 0.15)' },
-  { name: 'Git', category: 'Tools', color: '#F05032', glowColor: 'rgba(240, 80, 50, 0.15)' },
-  { name: 'LaTeX', category: 'Tools', color: '#008080', glowColor: 'rgba(0, 128, 128, 0.15)' },
-  { name: 'Tailwind CSS', category: 'Frontend', color: '#06B6D4', glowColor: 'rgba(6, 182, 212, 0.15)' },
-  { name: 'Node.js', category: 'Backend', color: '#339933', glowColor: 'rgba(51, 153, 51, 0.15)' },
-  { name: 'Vite', category: 'Tools', color: '#646CFF', glowColor: 'rgba(100, 108, 255, 0.15)' },
-  { name: 'Red Hat Linux', category: 'OS', color: '#EE0000', glowColor: 'rgba(238, 0, 0, 0.15)' },
+  { name: 'MongoDB', category: 'Database', color: '#10B981', glowColor: 'rgba(16, 185, 129, 0.2)' },
+  { name: 'Express.js', category: 'Backend', color: '#E2E8F0', glowColor: 'rgba(226, 232, 240, 0.15)' },
+  { name: 'PostgreSQL', category: 'Database', color: '#38BDF8', glowColor: 'rgba(56, 189, 248, 0.2)' },
+  { name: 'Supabase', category: 'Backend & Auth', color: '#3ECF8E', glowColor: 'rgba(62, 207, 142, 0.2)' },
+  { name: 'Tailwind CSS', category: 'Styling', color: '#06B6D4', glowColor: 'rgba(6, 182, 212, 0.2)' },
+  { name: 'OCI GenAI', category: 'Cloud & AI', color: '#C74634', glowColor: 'rgba(199, 70, 52, 0.2)' },
+  { name: 'MySQL', category: 'Database', color: '#0284C7', glowColor: 'rgba(2, 132, 199, 0.2)' },
+  { name: 'Red Hat Linux', category: 'SysAdmin', color: '#EE0000', glowColor: 'rgba(238, 0, 0, 0.2)' },
+  { name: 'Git & GitHub', category: 'Tooling', color: '#F05032', glowColor: 'rgba(240, 80, 50, 0.2)' },
 ];
 
 // Double lists to enable seamless loop
@@ -39,10 +42,14 @@ const MarqueeSection = () => {
 
   return (
     <section className="bg-[#0C0C0C] pt-20 sm:pt-28 md:pt-36 pb-12 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-5 mb-10 sm:mb-12">
-        <p className="text-[#D7E2EA]/40 text-center uppercase tracking-widest text-xs font-semibold">
-          Interactive Technologies
-        </p>
+      <div className="max-w-7xl mx-auto px-5 mb-10 sm:mb-14 flex items-center justify-center gap-4">
+        <div className="h-[1px] w-12 sm:w-20 bg-gradient-to-r from-transparent to-white/10" />
+        <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-md shadow-sm">
+          <span className="text-[#D7E2EA]/75 text-xs font-mono tracking-widest uppercase font-semibold">
+            Core Technologies & Frameworks
+          </span>
+        </div>
+        <div className="h-[1px] w-12 sm:w-20 bg-gradient-to-l from-transparent to-white/10" />
       </div>
 
       {/* Row 1 - moves right */}
@@ -65,18 +72,18 @@ const MarqueeSection = () => {
               <span className="text-[10px] sm:text-xs font-medium uppercase tracking-widest text-[#D7E2EA]/40 mb-1">
                 {tech.category}
               </span>
-              <span 
+              <span
                 className="text-base sm:text-lg font-black uppercase tracking-wider"
                 style={{ color: tech.color }}
               >
                 {tech.name}
               </span>
-              <div 
+              <div
                 className="absolute right-4 bottom-4 w-1.5 h-1.5 rounded-full"
-                style={{ 
+                style={{
                   backgroundColor: tech.color,
-                  boxShadow: `0 0 8px ${tech.color}` 
-                }} 
+                  boxShadow: `0 0 8px ${tech.color}`
+                }}
               />
             </div>
           ))}
@@ -103,18 +110,18 @@ const MarqueeSection = () => {
               <span className="text-[10px] sm:text-xs font-medium uppercase tracking-widest text-[#D7E2EA]/40 mb-1">
                 {tech.category}
               </span>
-              <span 
+              <span
                 className="text-base sm:text-lg font-black uppercase tracking-wider"
                 style={{ color: tech.color }}
               >
                 {tech.name}
               </span>
-              <div 
+              <div
                 className="absolute right-4 bottom-4 w-1.5 h-1.5 rounded-full"
-                style={{ 
+                style={{
                   backgroundColor: tech.color,
-                  boxShadow: `0 0 8px ${tech.color}` 
-                }} 
+                  boxShadow: `0 0 8px ${tech.color}`
+                }}
               />
             </div>
           ))}
