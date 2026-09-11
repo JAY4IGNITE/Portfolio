@@ -1,9 +1,8 @@
-import { useRef, useState, useMemo } from 'react';
+import { useRef } from 'react';
 import FadeIn from '../components/FadeIn';
 import ScrollRevealText from '../components/ScrollRevealText';
 import GradientCarousel, { type GradientCarouselItem } from '../components/GradientCarousel';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
 
 export const certificationsData: GradientCarouselItem[] = [
   // ─── 1. Oracle Generative AI Professional ───
@@ -410,23 +409,8 @@ export const certificationsData: GradientCarouselItem[] = [
   },
 ];
 
-const categories = [
-  'All',
-  'AI & Cloud',
-  'Programming & DSA',
-  'Web & Full Stack',
-  'Databases',
-  'DevOps & Systems',
-] as const;
-
 const CertificationsSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const [activeCategory, setActiveCategory] = useState<string>('All');
-
-  const filteredCertificates = useMemo(() => {
-    if (activeCategory === 'All') return certificationsData;
-    return certificationsData.filter((c) => c.category === activeCategory);
-  }, [activeCategory]);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -453,15 +437,6 @@ const CertificationsSection = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header Block */}
         <motion.div style={{ y: headerY }} className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-          <FadeIn delay={0.1} y={20}>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md mb-6">
-              <Sparkles className="w-3.5 h-3.5 text-[#B600A8]" />
-              <span className="text-[#D7E2EA]/70 text-xs sm:text-sm font-mono tracking-widest uppercase">
-                Official Credentials ({certificationsData.length} Certifications)
-              </span>
-            </div>
-          </FadeIn>
-
           <FadeIn delay={0.2} y={30}>
             <ScrollRevealText
               text="Certifications"
@@ -479,46 +454,14 @@ const CertificationsSection = () => {
           </FadeIn>
         </motion.div>
 
-        {/* ─── INTERACTIVE CATEGORY FILTER TABS ─── */}
-        <FadeIn delay={0.32} y={20}>
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-10 max-w-4xl mx-auto px-2">
-            {categories.map((cat) => {
-              const count = cat === 'All' 
-                ? certificationsData.length 
-                : certificationsData.filter((c) => c.category === cat).length;
-              const isSelected = activeCategory === cat;
-
-              return (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono tracking-wide transition-all duration-300 cursor-pointer border ${
-                    isSelected
-                      ? 'bg-gradient-to-r from-[#B600A8] to-[#7621B0] text-white border-white/25 shadow-[0_0_20px_rgba(182,0,168,0.4)] scale-105'
-                      : 'bg-white/[0.04] text-[#D7E2EA]/70 hover:text-white hover:bg-white/[0.08] border-white/10'
-                  }`}
-                >
-                  <span>{cat}</span>
-                  <span className={`px-1.5 py-0.2 text-[10.5px] rounded-full font-bold ${
-                    isSelected ? 'bg-white/20 text-white' : 'bg-white/[0.07] text-[#D7E2EA]/60'
-                  }`}>
-                    {count}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </FadeIn>
-
         {/* ─── 3D GRADIENT CAROUSEL ─── */}
         <FadeIn delay={0.36} y={30}>
           <GradientCarousel 
-            key={activeCategory}
-            items={filteredCertificates}
+            items={certificationsData}
             cardWidth={430}
             cardHeight={540}
-            showControls={true}
-            showIndicators={true}
+            showControls={false}
+            showIndicators={false}
             autoScroll={true}
             autoScrollInterval={3800}
             pauseOnHover={true}

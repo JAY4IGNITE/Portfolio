@@ -128,6 +128,7 @@ function App() {
         <Suspense fallback={<GitHubSkeleton />}>
           <GitHubActivitySection />
         </Suspense>
+
         <ContactSection />
       </motion.div>
     </motion.div>

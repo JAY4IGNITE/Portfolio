@@ -304,33 +304,69 @@ const HeroSection = () => {
             </FadeIn>
           </div>
 
-          {/* ── Bottom tagline with parallax ─────────────────────────────── */}
+          {/* ── Bottom tagline & availability with parallax ───────────── */}
           <AnimatePresence>
             {!isScrolling && (
               <motion.div
                 initial={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.3 }}
-                className="flex flex-col sm:flex-row justify-between items-start sm:items-end pb-7 sm:pb-8 md:pb-10 gap-4 sm:gap-0 z-20"
+                className="w-full flex flex-col sm:flex-row justify-between items-start sm:items-end pb-7 sm:pb-8 md:pb-10 gap-6 sm:gap-4 z-20"
               >
-                <motion.p
-                  className="text-[#D7E2EA] font-light uppercase tracking-wide leading-snug max-w-[160px] sm:max-w-[220px] md:max-w-[260px] parallax-layer"
-                  style={{
-                    fontSize: 'clamp(0.75rem, 1.4vw, 1.5rem)',
-                    y: taglineY,
-                  }}
-                >
-                  a web developer driven by crafting striking and unforgettable projects
-                </motion.p>
-
-                {/* ── Scroll indicator ──────────────────────────────────── */}
+                {/* Left: Bio Statement */}
                 <motion.div
-                  className="flex flex-col items-center gap-2 text-[#D7E2EA]/30 text-[9px] uppercase tracking-[0.3em]"
+                  style={{ y: taglineY }}
+                  className="max-w-[260px] sm:max-w-[280px] md:max-w-[340px] parallax-layer"
+                >
+                  <p className="text-[#D7E2EA] font-medium uppercase tracking-[0.06em] text-[11px] sm:text-xs md:text-sm leading-relaxed">
+                    HI, I&apos;M KRISHNA. I BUILD PRACTICAL SOFTWARE, AUTOMATIONS, AND AI ASSISTANTS.
+                  </p>
+                </motion.div>
+
+                {/* Center: Scroll indicator */}
+                <motion.div
+                  className="hidden md:flex flex-col items-center gap-2 text-[#D7E2EA]/30 text-[9px] uppercase tracking-[0.3em] mb-1"
                   animate={{ y: [0, 6, 0] }}
                   transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
                 >
                   <div className="w-[1px] h-12 bg-gradient-to-b from-transparent via-[#B600A8] to-transparent" />
                   Scroll
+                </motion.div>
+
+                {/* Right: Availability & Socials */}
+                <motion.div
+                  style={{ y: taglineY }}
+                  className="max-w-[260px] sm:max-w-[280px] md:max-w-[340px] flex flex-col items-start sm:items-end sm:text-right parallax-layer"
+                >
+                  <div className="flex flex-wrap items-center gap-2 mb-2 sm:mb-2.5">
+                    <a
+                      href="https://www.instagram.com/krishnaaw_14/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-semibold tracking-wider text-[#D7E2EA] uppercase bg-white/5 hover:bg-[#B600A8]/20 border border-white/10 hover:border-[#B600A8]/40 transition-all duration-300"
+                    >
+                      Instagram
+                    </a>
+                    <a
+                      href="https://github.com/JAY4IGNITE"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-semibold tracking-wider text-[#D7E2EA] uppercase bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/20 transition-all duration-300"
+                    >
+                      GitHub
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/in/jay4ignite/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-semibold tracking-wider text-[#D7E2EA] uppercase bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/20 transition-all duration-300"
+                    >
+                      LinkedIn
+                    </a>
+                  </div>
+                  <p className="text-[#D7E2EA] font-medium uppercase tracking-[0.06em] text-[11px] sm:text-xs md:text-sm leading-relaxed">
+                    OPEN TO INTERNSHIPS, FREELANCE PROJECTS, INTERESTING PROBLEMS TO SOLVE AND COLLABORATION.
+                  </p>
                 </motion.div>
               </motion.div>
             )}
