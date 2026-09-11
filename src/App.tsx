@@ -2,7 +2,7 @@ import HeroSection from './sections/HeroSection';
 import MarqueeSection from './sections/MarqueeSection';
 import AboutSection from './sections/AboutSection';
 import ServicesSection from './sections/ServicesSection';
-import EducationSection from './sections/EducationSection';
+import JourneySection from './sections/JourneySection';
 import { lazy, Suspense, useState } from 'react';
 import { useScroll, useSpring, motion, useTransform } from 'framer-motion';
 
@@ -112,7 +112,7 @@ function App() {
         <MarqueeSection />
         <AboutSection />
         <ServicesSection />
-        <EducationSection />
+        <JourneySection />
         <Suspense fallback={<SectionSkeleton bg="#FFFFFF" />}>
           <TechStackSection />
         </Suspense>

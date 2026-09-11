@@ -4,6 +4,7 @@ const sectionIds = [
   '', // Home (top of page)
   'about',
   'services',
+  'journey',
   'education',
   'tech-stack',
   'projects',
