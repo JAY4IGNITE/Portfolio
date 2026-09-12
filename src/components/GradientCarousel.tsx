@@ -13,7 +13,7 @@ export interface GradientCarouselItem {
   id: string;
   title: string;
   issuer: string;
-  recipient: string;
+  recipient?: string;
   date: string;
   category?: string;
   image: string;
@@ -327,11 +327,6 @@ export const GradientCarousel = ({
                       <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-[#D7E2EA] transition-all line-clamp-2 leading-snug">
                         {item.title}
                       </h3>
-
-                      {/* Recipient note */}
-                      <p className="text-[11.5px] font-mono text-[#D7E2EA]/40 mt-1 truncate">
-                        Recipient: <span className="text-[#D7E2EA]/75">{item.recipient}</span>
-                      </p>
                     </div>
 
                     {/* Tags & Action Buttons */}
@@ -510,7 +505,7 @@ export const GradientCarousel = ({
               {/* Modal Footer Actions (No Verify Online redirect button) */}
               <div className="p-4 sm:p-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 bg-gradient-to-r from-transparent to-white/[0.02]">
                 <div className="text-xs sm:text-sm text-[#D7E2EA]/70 font-mono flex items-center gap-2">
-                  <span>Issued to <strong className="text-white">{selectedItem.recipient}</strong></span>
+                  <span className="text-white font-medium">{selectedItem.issuer}</span>
                   <span className="text-white/20">•</span>
                   <span>{selectedItem.date}</span>
                 </div>

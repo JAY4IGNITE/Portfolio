@@ -24,7 +24,7 @@ export interface CertificationItem {
   id: string;
   title: string;
   issuer: string;
-  recipient: string;
+  recipient?: string;
   date: string;
   category: string;
   image: string;
