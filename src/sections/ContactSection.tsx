@@ -142,7 +142,11 @@ const ContactSection = () => {
           throw new Error('Formspree ID is not configured. Add VITE_FORMSPREE_ID to your environment variables.');
         }
 
-        const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
+        const endpoint = formspreeId.startsWith('http')
+          ? formspreeId
+          : `https://formspree.io/f/${formspreeId}`;
+
+        const response = await fetch(endpoint, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -152,11 +156,16 @@ const ContactSection = () => {
             name: formData.name,
             email: formData.email,
             message: formData.message,
+            _subject: `Portfolio Message from ${formData.name}`,
           }),
         });
 
         if (!response.ok) {
-          throw new Error('Failed to send message via Formspree. Please verify your Form ID.');
+          const errorData = await response.json().catch(() => null);
+          const errorMsg = Array.isArray(errorData?.errors)
+            ? errorData.errors.map((err: { message: string }) => err.message).join(', ')
+            : errorData?.error || 'Failed to send message via Formspree. Please verify your Form ID.';
+          throw new Error(errorMsg);
         }
       } else if (provider === 'emailjs') {
         const { serviceId, templateId, publicKey } = emailjs;

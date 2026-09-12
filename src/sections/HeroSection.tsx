@@ -11,7 +11,7 @@
  *  7. Signature scrub reveal remains outside the scaling wrapper
  */
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import FadeIn from '../components/FadeIn';
 import SlicedParallaxPortrait from '../components/SlicedParallaxPortrait';
 import ParticleField from '../components/ParticleField';
@@ -25,18 +25,9 @@ import {
   useMotionValueEvent,
   useSpring,
 } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
-import useActiveSection from '../hooks/useActiveSection';
-import { navLinks } from '@/data/navigation';
-import { stopLenis, startLenis } from '@/utils/lenis';
-
-const personalEmail = import.meta.env.VITE_PERSONAL_EMAIL || 'jayasaikrishnavasamsetti@gmail.com';
-const personalPhone = import.meta.env.VITE_PERSONAL_PHONE || '+91 9030649777';
 
 const HeroSection = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
-  const activeSection = useActiveSection();
   const sectionRef = useRef<HTMLElement>(null);
 
   /* ── Scroll progress over the 400vh sticky section ─────────────────────── */
@@ -77,24 +68,6 @@ const HeroSection = () => {
     setIsScrolling(latest > 0.02);
   });
 
-  // Drawer key/scroll handlers
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsOpen(false);
-    };
-    if (isOpen) {
-      window.addEventListener('keydown', handleKeyDown);
-      document.documentElement.style.overflow = 'hidden';
-      document.body.style.overflow = 'hidden';
-      stopLenis();
-    }
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      document.documentElement.style.overflow = '';
-      document.body.style.overflow = '';
-      startLenis();
-    };
-  }, [isOpen]);
 
   return (
     <section
@@ -144,117 +117,8 @@ const HeroSection = () => {
           style={{ scale: contentScale }}
           className="relative z-10 w-full h-full flex flex-col px-6 md:px-10 bg-transparent origin-center overflow-visible shadow-[0_0_60px_rgba(0,0,0,0.9)]"
         >
-          {/* Navbar & Floating Pill */}
-          <AnimatePresence mode="wait">
-            {!isScrolling ? (
-              <motion.div
-                key="default-nav"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="w-full relative z-30"
-              >
-                <nav className="flex justify-between items-center w-full pt-6 md:pt-8 relative z-30">
-                  <div />
-                  <button
-                    onClick={() => setIsOpen(true)}
-                    className="flex items-center gap-2.5 text-[#D7E2EA] font-medium uppercase tracking-widest text-[11px] sm:text-xs hover:opacity-75 transition-opacity duration-200 cursor-pointer bg-[#D7E2EA]/5 px-5 py-2.5 rounded-full border border-[#D7E2EA]/10 hover:border-[#B600A8]/30"
-                  >
-                    <span>Menu</span>
-                    <Menu className="w-4 h-4 text-[#B600A8]" />
-                  </button>
-                </nav>
-              </motion.div>
-            ) : (
-              <motion.div
-                key="floating-pill"
-                initial={{ opacity: 0, y: -50, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -50, scale: 0.9 }}
-                transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-                className="fixed top-6 right-6 z-40"
-              >
-                <button
-                  onClick={() => setIsOpen(true)}
-                  className="flex items-center gap-2.5 text-[#D7E2EA] font-medium uppercase tracking-widest text-[11px] sm:text-xs cursor-pointer bg-black/60 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/10 hover:border-[#B600A8]/50 shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-300 hover:scale-105"
-                >
-                  <span>Menu</span>
-                  <Menu className="w-4 h-4 text-[#B600A8]" />
-                </button>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* ── Drawer ─────────────────────────────────────────────────── */}
-          <AnimatePresence>
-            {isOpen && (
-              <motion.div
-                role="dialog"
-                aria-modal="true"
-                aria-label="Navigation Menu"
-                className="fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex flex-col justify-between p-8 md:p-12"
-                initial={{ x: '100%' }}
-                animate={{ x: 0 }}
-                exit={{ x: '100%' }}
-                transition={{ type: 'spring', damping: 26, stiffness: 180 }}
-              >
-                <div className="flex justify-between items-center w-full">
-                  <div />
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center gap-2 text-[#D7E2EA] font-medium uppercase tracking-widest text-[11px] sm:text-xs hover:opacity-75 transition-opacity duration-200 cursor-pointer bg-white/5 px-5 py-2.5 rounded-full border border-white/10 hover:border-[#7621B0]/30"
-                  >
-                    <span>Close</span>
-                    <X className="w-4 h-4 text-[#7621B0]" />
-                  </button>
-                </div>
-
-                <div className="grid grid-cols-2 sm:flex sm:flex-col gap-3 sm:gap-5 md:gap-6 my-auto pl-2 sm:pl-4 max-h-[60vh] overflow-y-auto py-4">
-                  {navLinks.map((link, index) => {
-                    const isActive = activeSection === link.href;
-                    return (
-                      <motion.a
-                        key={link.label}
-                        href={link.href}
-                        onClick={() => setIsOpen(false)}
-                        aria-current={isActive ? 'page' : undefined}
-                        className={`text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-none transition-colors duration-300 relative ${isActive
-                            ? 'text-[#B600A8] pl-3 sm:pl-5'
-                            : 'text-[#D7E2EA]/70 hover:text-[#D7E2EA]'
-                          }`}
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.04 }}
-                      >
-                        {isActive && (
-                          <motion.span
-                            layoutId="nav-active-indicator"
-                            className="absolute left-0 top-1 bottom-1 w-[3px] sm:w-[4px] rounded-full bg-[#B600A8]"
-                            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-                            style={{ boxShadow: '0 0 12px rgba(182, 0, 168, 0.5)' }}
-                          />
-                        )}
-                        {link.label}
-                      </motion.a>
-                    );
-                  })}
-                </div>
-
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 text-[10px] sm:text-xs text-[#D7E2EA]/40 uppercase tracking-widest font-light border-t border-[#D7E2EA]/5 pt-6 w-full">
-                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-6">
-                    <a href={`mailto:${personalEmail}`} className="hover:text-white transition-colors cursor-pointer">{personalEmail}</a>
-                    <a href="https://wa.me/919030649777" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors cursor-pointer">{personalPhone}</a>
-                  </div>
-                  <div className="flex flex-wrap gap-4">
-                    <a href="https://github.com/JAY4IGNITE" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors font-medium cursor-pointer">GitHub</a>
-                    <a href="https://www.linkedin.com/in/jay4ignite/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors font-medium cursor-pointer">LinkedIn</a>
-                    <a href="https://www.instagram.com/krishnaaw_14/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors font-medium cursor-pointer">Instagram</a>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {/* Top spacing to accommodate the top floating dock menu */}
+          <div className="w-full pt-16 sm:pt-20 md:pt-24" />
 
           {/* ══════════════════════════════════════════════════════════════
               ★ HERO HEADING — with horizontal parallax split
@@ -315,7 +179,7 @@ const HeroSection = () => {
                   className="max-w-[260px] sm:max-w-[280px] md:max-w-[340px] parallax-layer"
                 >
                   <p className="text-[#D7E2EA] font-medium uppercase tracking-[0.06em] text-[11px] sm:text-xs md:text-sm leading-relaxed">
-                    HI, I&apos;M KRISHNA. I BUILD PRACTICAL SOFTWARE, AUTOMATIONS, AND AI ASSISTANTS.
+                    ENGINEERING HIGH-IMPACT WEB PLATFORMS, REAL-TIME AI SYSTEMS, AND SCALABLE DIGITAL EXPERIENCES.
                   </p>
                 </motion.div>
 

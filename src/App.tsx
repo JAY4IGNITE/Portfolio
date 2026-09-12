@@ -19,6 +19,7 @@ import ContactSection from './sections/ContactSection';
 import ScrollToTop from './components/ScrollToTop';
 import Preloader from './components/Preloader';
 import CustomCursor from './components/CustomCursor';
+import TopNavbar from './components/TopNavbar';
 
 const StatsSkeleton = () => (
   <div className="bg-[#0C0C0C] text-[#D7E2EA] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32 section-panel overflow-hidden">
@@ -103,6 +104,9 @@ function App() {
         style={{ scaleX }}
       />
       
+      {/* Top Floating Dock Menu Bar */}
+      {!isLoading && <TopNavbar />}
+
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: isZoomingOut ? 1 : 0.8, opacity: isZoomingOut ? 1 : 0 }}

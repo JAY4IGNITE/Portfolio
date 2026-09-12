@@ -1,13 +1,12 @@
 export const CONTACT_CONFIG = {
   // Active email integration provider: 'emailjs' | 'formspree' | 'google_script' | 'dev_log'
-  // Fallback defaults to 'google_script' as the user's Google Sheets endpoint is already set up.
-  provider: (import.meta.env.VITE_CONTACT_PROVIDER || 'google_script') as 'emailjs' | 'formspree' | 'google_script' | 'dev_log',
+  provider: (import.meta.env.VITE_CONTACT_PROVIDER || 'formspree') as 'emailjs' | 'formspree' | 'google_script' | 'dev_log',
 
   // 1. Google Apps Script Configuration
   googleScriptUrl: import.meta.env.VITE_GOOGLE_SCRIPT_URL || '',
 
   // 2. Formspree Configuration (Form ID from Formspree Dashboard)
-  formspreeId: import.meta.env.VITE_FORMSPREE_ID || '',
+  formspreeId: (import.meta.env.VITE_FORMSPREE_ID || 'mljevynb').replace(/^https?:\/\/formspree\.io\/f\//, '').trim(),
 
   // 3. EmailJS Configuration
   emailjs: {
