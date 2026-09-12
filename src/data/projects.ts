@@ -32,6 +32,7 @@ export const projects: ProjectData[] = [
     learnings:
       'Engineered scalable microservice communication between a Python FastAPI backend and a Vite React frontend, integrated sandboxed code runners with Judge0, and built browser-based facial vision telemetry.',
     link: 'https://github.com/JAY4IGNITE/Smart-Apply',
+    liveUrl: 'https://smartapplies.app',
     images: ['/assets/Projects/smartapply/smartapply-hero.png'],
   },
 ];

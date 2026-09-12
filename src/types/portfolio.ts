@@ -10,6 +10,7 @@ export interface ProjectData {
   challenges: string;
   learnings: string;
   link: string;
+  liveUrl?: string;
   images: string[];
 }
 

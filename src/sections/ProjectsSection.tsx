@@ -85,9 +85,21 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
               <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
               <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
               <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
-              <span className="mx-auto text-[11px] font-mono text-white/50 px-4 py-0.5 rounded-full bg-black/40 border border-white/5">
-                {project.name.toLowerCase()}.preview
-              </span>
+              {project.liveUrl ? (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mx-auto text-[11px] font-mono text-white/70 hover:text-white px-4 py-0.5 rounded-full bg-black/40 border border-white/10 hover:border-white/25 transition-colors flex items-center gap-1.5 cursor-pointer"
+                >
+                  <span>{project.liveUrl.replace(/^https?:\/\//, '')}</span>
+                  <span className="text-[10px] text-white/40">↗</span>
+                </a>
+              ) : (
+                <span className="mx-auto text-[11px] font-mono text-white/50 px-4 py-0.5 rounded-full bg-black/40 border border-white/5">
+                  {project.name.toLowerCase()}.preview
+                </span>
+              )}
             </div>
             <img
               src={
@@ -186,27 +198,36 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
         </div>
 
         {/* Footer Actions */}
-        {project.link && project.link !== '#' && (
-          <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap gap-4 items-center justify-between">
-            <div className="flex items-center gap-3">
+        <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap gap-4 items-center justify-between">
+          <div className="flex flex-wrap items-center gap-3">
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#B600A8] to-[#7621B0] text-white px-7 py-3 text-xs sm:text-sm font-medium tracking-wider uppercase hover:brightness-110 transition-all duration-200 shadow-[0_4px_20px_rgba(182,0,168,0.4)] hover:scale-105 active:scale-95 cursor-pointer"
+              >
+                <span>Live Project</span>
+              </a>
+            )}
+            {project.link && project.link !== '#' && (
               <a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#B600A8] to-[#7621B0] text-white px-7 py-3 text-xs sm:text-sm font-medium tracking-wider uppercase hover:brightness-110 transition-all duration-200 shadow-[0_4px_20px_rgba(182,0,168,0.35)] hover:scale-105 active:scale-95 cursor-pointer"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 text-[#D7E2EA] hover:text-white hover:bg-white/10 px-6 py-3 text-xs sm:text-sm font-medium tracking-wider uppercase transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
               >
-                <span>{project.link.includes('github.com') ? 'View on GitHub' : 'Live Demo'}</span>
-                <span>↗</span>
+                <span>{project.link.includes('github.com') ? 'View on GitHub' : 'Source Code'}</span>
               </a>
-            </div>
-            <button
-              onClick={onClose}
-              className="text-xs font-mono uppercase tracking-widest text-[#D7E2EA]/50 hover:text-white cursor-pointer transition-colors px-4 py-2"
-            >
-              Close
-            </button>
+            )}
           </div>
-        )}
+          <button
+            onClick={onClose}
+            className="text-xs font-mono uppercase tracking-widest text-[#D7E2EA]/50 hover:text-white cursor-pointer transition-colors px-4 py-2"
+          >
+            Close
+          </button>
+        </div>
       </motion.div>
     </motion.div>
   );
@@ -303,24 +324,35 @@ const ProjectCard = memo(({ project, index, onViewDetails }: ProjectCardProps) =
             </div>
 
             {/* Action Buttons */}
-            <div className="flex items-center gap-2.5 pt-2">
+            <div className="flex flex-wrap items-center gap-2.5 pt-2">
               <motion.button
                 onClick={() => onViewDetails(project)}
-                className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#B600A8] to-[#7621B0] text-white font-medium uppercase tracking-wider px-4 py-2 text-xs cursor-pointer shadow-md hover:brightness-110 active:scale-95 transition-all duration-200"
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/15 text-[#D7E2EA]/90 hover:text-white hover:bg-white/10 font-medium uppercase tracking-wider px-3.5 py-2 text-xs cursor-pointer transition-all duration-200"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <span>Details</span>
                 <span>→</span>
               </motion.button>
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#B600A8] to-[#7621B0] text-white font-medium uppercase tracking-wider px-4 py-2 text-xs cursor-pointer shadow-md hover:brightness-110 active:scale-95 transition-all duration-200"
+                >
+                  <span>Live Project</span>
+                  <span>↗</span>
+                </a>
+              )}
               {project.link !== '#' && (
                 <a
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-full border border-white/15 text-[#D7E2EA]/85 hover:text-white font-medium uppercase tracking-wider px-4 py-2 text-xs hover:bg-white/10 hover:border-white/25 transition-all duration-200"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-white/15 text-[#D7E2EA]/85 hover:text-white font-medium uppercase tracking-wider px-3.5 py-2 text-xs hover:bg-white/10 hover:border-white/25 transition-all duration-200"
                 >
-                  <span>{project.link.includes('github.com') ? 'GitHub' : 'Live'}</span>
+                  <span>{project.link.includes('github.com') ? 'GitHub' : 'Code'}</span>
                   <span>↗</span>
                 </a>
               )}
@@ -390,10 +422,23 @@ const ProjectCard = memo(({ project, index, onViewDetails }: ProjectCardProps) =
                     <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/80" />
                     <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]/80" />
                   </div>
-                  <div className="flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-black/30 border border-white/5 text-[10px] sm:text-[11px] text-white/50 font-mono">
-                    <span className="text-emerald-400/80">🔒</span>
-                    <span>smartapply.studio</span>
-                  </div>
+                  {project.liveUrl ? (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-black/40 border border-white/10 hover:border-emerald-400/40 text-[10px] sm:text-[11px] text-white/70 hover:text-white font-mono transition-colors"
+                    >
+                      <span className="text-emerald-400">🔒</span>
+                      <span>{project.liveUrl.replace(/^https?:\/\//, '')}</span>
+                      <span className="text-emerald-400/80">↗</span>
+                    </a>
+                  ) : (
+                    <div className="flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-black/30 border border-white/5 text-[10px] sm:text-[11px] text-white/50 font-mono">
+                      <span className="text-emerald-400/80">🔒</span>
+                      <span>smartapplies.app</span>
+                    </div>
+                  )}
                   <div className="w-8" />
                 </div>
 
