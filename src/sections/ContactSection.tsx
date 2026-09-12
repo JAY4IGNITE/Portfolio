@@ -131,14 +131,12 @@ const ContactSection = () => {
         formBody.append('email', formData.email);
         formBody.append('message', formData.message);
 
-        const response = await fetch(googleScriptUrl, {
+        // Google Apps Script redirects with 302, mode: 'no-cors' allows the POST to complete seamlessly
+        await fetch(googleScriptUrl, {
           method: 'POST',
           body: formBody,
+          mode: 'no-cors',
         });
-
-        if (!response.ok) {
-          throw new Error('Network response was not ok from Google script.');
-        }
       } else if (provider === 'formspree') {
         if (!formspreeId) {
           throw new Error('Formspree ID is not configured. Add VITE_FORMSPREE_ID to your environment variables.');

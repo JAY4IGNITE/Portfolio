@@ -92,12 +92,12 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                   rel="noopener noreferrer"
                   className="mx-auto text-[11px] font-mono text-white/70 hover:text-white px-4 py-0.5 rounded-full bg-black/40 border border-white/10 hover:border-white/25 transition-colors flex items-center gap-1.5 cursor-pointer"
                 >
-                  <span>{project.liveUrl.replace(/^https?:\/\//, '')}</span>
+                  <span>{project.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')}</span>
                   <span className="text-[10px] text-white/40">↗</span>
                 </a>
               ) : (
                 <span className="mx-auto text-[11px] font-mono text-white/50 px-4 py-0.5 rounded-full bg-black/40 border border-white/5">
-                  {project.name.toLowerCase()}.preview
+                  {project.name.toLowerCase().replace(/\s+/g, '')}.preview
                 </span>
               )}
             </div>
@@ -430,13 +430,13 @@ const ProjectCard = memo(({ project, index, onViewDetails }: ProjectCardProps) =
                       className="flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-black/40 border border-white/10 hover:border-emerald-400/40 text-[10px] sm:text-[11px] text-white/70 hover:text-white font-mono transition-colors"
                     >
                       <span className="text-emerald-400">🔒</span>
-                      <span>{project.liveUrl.replace(/^https?:\/\//, '')}</span>
+                      <span>{project.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')}</span>
                       <span className="text-emerald-400/80">↗</span>
                     </a>
                   ) : (
                     <div className="flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-black/30 border border-white/5 text-[10px] sm:text-[11px] text-white/50 font-mono">
                       <span className="text-emerald-400/80">🔒</span>
-                      <span>smartapplies.app</span>
+                      <span>{project.name.toLowerCase().replace(/\s+/g, '')}.app</span>
                     </div>
                   )}
                   <div className="w-8" />
