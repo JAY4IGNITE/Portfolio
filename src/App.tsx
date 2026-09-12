@@ -2,7 +2,6 @@ import HeroSection from './sections/HeroSection';
 import MarqueeSection from './sections/MarqueeSection';
 import AboutSection from './sections/AboutSection';
 import ServicesSection from './sections/ServicesSection';
-import JourneySection from './sections/JourneySection';
 import { lazy, Suspense, useState, useCallback } from 'react';
 import { useScroll, useSpring, motion, useTransform } from 'framer-motion';
 
@@ -72,20 +71,18 @@ function App() {
   // Map approximate scroll positions to colors
   const backgroundColor = useTransform(
     scrollYProgress,
-    [0, 0.12, 0.15, 0.25, 0.3, 0.45, 0.5, 0.6, 0.65, 0.75, 0.8, 1],
+    [0, 0.12, 0.16, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85, 1],
     [
-      "#0C0C0C", // Hero + Marquee
-      "#0C0C0C", // About start
-      "#FFFFFF", // Services
-      "#FFFFFF", // Services end
-      "#0C0C0C", // Education
-      "#0C0C0C", // Education end
-      "#FFFFFF", // TechStack / Certs
-      "#FFFFFF", // TechStack / Certs end
+      "#0C0C0C", // Hero + Marquee + About
+      "#0C0C0C", // About end
+      "#FFFFFF", // Services + TechStack
+      "#FFFFFF", // TechStack end
       "#0C0C0C", // Projects
-      "#0C0C0C", // Projects end
+      "#FFFFFF", // Certifications
+      "#0C0C0C", // Coding Stats
       "#FFFFFF", // GitHub Activity
-      "#0C0C0C"  // Contact
+      "#0C0C0C", // Contact start
+      "#0C0C0C", // Contact end
     ]
   );
 
@@ -116,7 +113,6 @@ function App() {
         <MarqueeSection />
         <AboutSection />
         <ServicesSection />
-        <JourneySection />
         <Suspense fallback={<SectionSkeleton bg="#FFFFFF" />}>
           <TechStackSection />
         </Suspense>
