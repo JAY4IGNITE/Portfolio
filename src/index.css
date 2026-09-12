@@ -40,34 +40,48 @@ body,
 
 /* Hide default cursor when interactive custom cursor is active */
 html.custom-cursor-active,
-html.custom-cursor-active * {
+html.custom-cursor-active *,
+html.custom-cursor-active *::before,
+html.custom-cursor-active *::after {
   cursor: none !important;
 }
 
-/* Custom cursors - fallback only on devices that support hover */
+/* Custom cursors - fallback only on devices that support hover AND when custom cursor is inactive */
 @media (hover: hover) {
-  *,
-  *::before,
-  *::after {
+  html:not(.custom-cursor-active),
+  html:not(.custom-cursor-active) *,
+  html:not(.custom-cursor-active) *::before,
+  html:not(.custom-cursor-active) *::after {
     cursor: url('/assets/custom-cursor.svg') 6 6, auto !important;
   }
 
-  a, button, [role="button"], label[for],
-  .cursor-pointer, summary {
+  html:not(.custom-cursor-active) a,
+  html:not(.custom-cursor-active) button,
+  html:not(.custom-cursor-active) [role="button"],
+  html:not(.custom-cursor-active) label[for],
+  html:not(.custom-cursor-active) .cursor-pointer,
+  html:not(.custom-cursor-active) summary {
     cursor: url('/assets/cursor-pointer.svg') 10 4, pointer !important;
   }
 
-  input[type="text"], input[type="email"], input[type="tel"],
-  input[type="search"], input[type="url"], input[type="password"],
-  textarea, [contenteditable="true"] {
+  html:not(.custom-cursor-active) input[type="text"],
+  html:not(.custom-cursor-active) input[type="email"],
+  html:not(.custom-cursor-active) input[type="tel"],
+  html:not(.custom-cursor-active) input[type="search"],
+  html:not(.custom-cursor-active) input[type="url"],
+  html:not(.custom-cursor-active) input[type="password"],
+  html:not(.custom-cursor-active) textarea,
+  html:not(.custom-cursor-active) [contenteditable="true"] {
     cursor: url('/assets/cursor-text.svg') 16 16, text !important;
   }
 
-  .cursor-grab, .grab-scroll {
+  html:not(.custom-cursor-active) .cursor-grab,
+  html:not(.custom-cursor-active) .grab-scroll {
     cursor: url('/assets/cursor-grab.svg') 16 16, grab !important;
   }
 
-  .cursor-grab:active, .grab-scroll:active {
+  html:not(.custom-cursor-active) .cursor-grab:active,
+  html:not(.custom-cursor-active) .grab-scroll:active {
     cursor: url('/assets/cursor-grabbing.svg') 16 16, grabbing !important;
   }
 }
