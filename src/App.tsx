@@ -100,8 +100,9 @@ function App() {
       
       <ScrollToTop />
       <CustomCursor />
+      {/* Top Dynamic Scroll Progress Beam */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[2px] bg-[#B600A8] origin-left z-50"
+        className="fixed top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#B600A8] via-[#8E2DE2] to-[#B600A8] shadow-[0_0_12px_rgba(182,0,168,0.9),0_0_4px_rgba(142,45,226,0.6)] origin-left z-50 pointer-events-none"
         style={{ scaleX }}
       />
       

@@ -86,6 +86,50 @@ html.custom-cursor-active *::after {
   }
 }
 
+/* ── Dynamic Ultra-Thin Portfolio Scrollbar ─────────── */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #B600A8 transparent;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #B600A8 0%, #7621B0 50%, #B600A8 100%);
+  border-radius: 9999px;
+  box-shadow: 0 0 8px rgba(182, 0, 168, 0.4);
+  transition: all 0.25s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #FF1FD8 0%, #9A36E8 50%, #FF1FD8 100%);
+  box-shadow: 0 0 12px rgba(182, 0, 168, 0.9), 0 0 4px rgba(118, 33, 176, 0.8);
+}
+
+/* Modal and internal scrollable areas */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #B600A8, #7621B0);
+  border-radius: 9999px;
+}
+
 /* Hide scrollbar for horizontal scroll areas */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;

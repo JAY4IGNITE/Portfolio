@@ -8,6 +8,7 @@ import {
   X, 
   Calendar
 } from 'lucide-react';
+import { stopLenis, startLenis } from '@/utils/lenis';
 
 export interface GradientCarouselItem {
   id: string;
@@ -107,6 +108,24 @@ export const GradientCarousel = ({
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleNext, handlePrev, handleModalNext, handleModalPrev, selectedItem]);
+
+  // Lock Lenis & document scroll when modal is open
+  useEffect(() => {
+    if (selectedItem) {
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+      stopLenis();
+      return () => {
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+        startLenis();
+      };
+    } else {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      startLenis();
+    }
+  }, [selectedItem]);
 
   // Auto-scroll timer
   useEffect(() => {
@@ -437,6 +456,7 @@ export const GradientCarousel = ({
             exit={{ opacity: 0 }}
             onClick={() => setSelectedItem(null)}
             className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-xl"
+            data-lenis-prevent
           >
             <motion.div
               initial={{ scale: 0.92, opacity: 0, y: 15 }}
@@ -444,7 +464,9 @@ export const GradientCarousel = ({
               exit={{ scale: 0.92, opacity: 0, y: 15 }}
               transition={{ type: 'spring', damping: 26, stiffness: 320 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-4xl w-full rounded-3xl overflow-hidden border border-white/20 bg-[#111116] shadow-[0_25px_80px_rgba(0,0,0,0.9)] flex flex-col max-h-[92vh]"
+              className="relative max-w-4xl w-full rounded-3xl overflow-hidden border border-white/20 bg-[#111116] shadow-[0_25px_80px_rgba(0,0,0,0.9)] flex flex-col max-h-[92vh] overscroll-contain"
+              style={{ overscrollBehavior: 'contain' }}
+              data-lenis-prevent
             >
               {/* Modal Header */}
               <div className="p-4 sm:p-6 border-b border-white/10 flex items-center justify-between bg-gradient-to-r from-white/[0.04] to-transparent">

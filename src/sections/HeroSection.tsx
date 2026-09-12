@@ -28,6 +28,7 @@ import {
 import { Menu, X } from 'lucide-react';
 import useActiveSection from '../hooks/useActiveSection';
 import { navLinks } from '@/data/navigation';
+import { stopLenis, startLenis } from '@/utils/lenis';
 
 const personalEmail = import.meta.env.VITE_PERSONAL_EMAIL || 'jayasaikrishnavasamsetti@gmail.com';
 const personalPhone = import.meta.env.VITE_PERSONAL_PHONE || '+91 9030649777';
@@ -83,11 +84,15 @@ const HeroSection = () => {
     };
     if (isOpen) {
       window.addEventListener('keydown', handleKeyDown);
+      document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
+      stopLenis();
     }
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      startLenis();
     };
   }, [isOpen]);
 
