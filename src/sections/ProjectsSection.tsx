@@ -108,7 +108,7 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                   : project.images[0]
               }
               alt={project.name}
-              className="w-full h-auto aspect-[1024/504] object-contain bg-[#0A0B0F] max-h-[460px]"
+              className="w-full h-auto block object-cover bg-[#0A0B0F] max-h-[460px]"
             />
           </div>
         )}
@@ -442,12 +442,12 @@ const ProjectCard = memo(({ project, index, onViewDetails }: ProjectCardProps) =
                   <div className="w-8" />
                 </div>
 
-                {/* Resized Dynamic Image with exact aspect ratio - zero crop, completely responsive */}
+                {/* Dynamic Image preview - flush edge-to-edge fit with zero black corner space */}
                 <div className="overflow-hidden bg-[#0A0B0F]">
                   <img
                     src={gridImages[0]}
                     alt={`${project.name} preview`}
-                    className="w-full h-auto aspect-[1024/504] object-contain transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                    className="w-full h-auto block object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
                     loading="lazy"
                   />
                 </div>
