@@ -40,5 +40,6 @@ jobs:
         with:
           target_branch: output
           build_dir: dist
+          commit_message: "Deploy contribution snake [skip ci] [skip vercel]"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
