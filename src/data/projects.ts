@@ -69,4 +69,39 @@ export const projects: ProjectData[] = [
     liveUrl: 'https://mindvault-39809.web.app',
     images: ['/assets/Projects/mindvault/mindvault-hero.png'],
   },
+  {
+    number: '03',
+    name: 'Aparnadevi Canteen',
+    category: 'Smart Canteen & Food Ordering',
+    tech: [
+      'React 19',
+      'Node.js',
+      'Express',
+      'Supabase',
+      'PostgreSQL',
+      'Tailwind CSS',
+      'Three.js',
+      'GSAP',
+      'JWT Auth',
+      'ExcelJS',
+    ],
+    description:
+      'An end-to-end full-stack canteen management and digital food ordering ecosystem built for campus and hostel dining. Eliminates manual paper coupons and long counter queues with automated student ordering, instant digital token generation, real-time order lifecycle tracking, staff POS counter sales, and live database telemetry.',
+    features: [
+      'Interactive 3D WebGL Landing: Features a custom Three.js color-bend shader background with fluid GSAP, Framer Motion, and Lenis smooth momentum scrolling',
+      'Digital Token Pipeline: Seamless student cart checkout issuing instant cryptographically tagged tokens with live status tracking (Pending → Preparing → Ready / Completed)',
+      'POS Counter Sales Register: Dedicated fast-billing terminal for canteen staff to rapidly process walk-in orders with immediate receipt generation',
+      'Live Supabase Telemetry: Real-time public statistics counter streaming live student counts, active dish menus, and completed orders directly from PostgreSQL',
+      'Client & Server Report Generation: Dynamic Microsoft Excel (.xlsx) sales report compilation with ExcelJS and in-browser PDF invoices via html2canvas and jsPDF',
+      'Enterprise Auth & Communication: Secure JWT cookie authentication with Bcrypt password hashing, role-based route guards, and transactional emails via Nodemailer',
+      'WhatsApp Community Integration: Built-in WhatsApp channel integration with dynamic QR codes for rapid menu notices and daily hostel specials',
+    ],
+    challenges:
+      'Handling sudden meal-time traffic spikes and concurrent order placements without token collisions or inventory race conditions. Solved by orchestrating atomic Supabase PostgreSQL transactions, strict order lifecycle state machines, and high-efficiency Express compression.',
+    learnings:
+      'Engineered full-stack TypeScript/JavaScript workflows with React 19 and Node.js Express, integrated WebGL shaders with UI animation frameworks, and implemented multi-role POS workflows with automated binary document exports.',
+    link: 'https://github.com/JAY4IGNITE/AparnaDeviCanteen',
+    liveUrl: 'https://aparnadevicanteen.onrender.com',
+    images: ['/assets/Projects/aparnadevi/aparnadevi-hero.png'],
+  },
 ];
