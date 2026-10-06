@@ -185,4 +185,3 @@ The output bundle is generated inside the `dist/` directory, ready to be hosted 
 
 **Jaya Sai Krishna Vasamsetti**
 - GitHub: [@JAY4IGNITE](https://github.com/JAY4IGNITE)
-- Portfolio: [nandu.work.gd](https://nandu.work.gd)
