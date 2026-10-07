@@ -107,8 +107,8 @@ export default function SlicedParallaxPortrait({ scrollYProgress }: Props) {
     };
   }, []);
 
-  const baseSrc = `${import.meta.env.BASE_URL}assets/Krishna.png`;
-  const revealSrc = `${import.meta.env.BASE_URL}assets/Krishna-2.png`;
+  const baseSrc = `${import.meta.env.BASE_URL}assets/Krishna.webp`;
+  const revealSrc = `${import.meta.env.BASE_URL}assets/Krishna-2.webp`;
 
   return (
     <motion.div

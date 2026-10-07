@@ -33,7 +33,7 @@ export const projects: ProjectData[] = [
       'Engineered scalable microservice communication between a Python FastAPI backend and a Vite React frontend, integrated sandboxed code runners with Judge0, and built browser-based facial vision telemetry.',
     link: 'https://github.com/JAY4IGNITE/Smart-Apply',
     liveUrl: 'https://smartapplies.app',
-    images: ['/assets/Projects/smartapply/smartapply-hero.png'],
+    images: ['/assets/Projects/smartapply/smartapply-hero.webp'],
   },
   {
     number: '02',
@@ -67,7 +67,7 @@ export const projects: ProjectData[] = [
       'Architected user-scoped real-time WebSocket gateways with heartbeat monitoring, engineered prompt injection defenses, and deployed containerized Node.js microservices to Google Cloud Run.',
     link: 'https://github.com/JAY4IGNITE/MindVault',
     liveUrl: 'https://mindvault-39809.web.app',
-    images: ['/assets/Projects/mindvault/mindvault-hero.png'],
+    images: ['/assets/Projects/mindvault/mindvault-hero.webp'],
   },
   {
     number: '03',
@@ -102,6 +102,6 @@ export const projects: ProjectData[] = [
       'Engineered full-stack TypeScript/JavaScript workflows with React 19 and Node.js Express, integrated WebGL shaders with UI animation frameworks, and implemented multi-role POS workflows with automated binary document exports.',
     link: 'https://github.com/JAY4IGNITE/AparnaDeviCanteen',
     liveUrl: 'https://aparnadevicanteen.onrender.com',
-    images: ['/assets/Projects/aparnadevi/aparnadevi-hero.png'],
+    images: ['/assets/Projects/aparnadevi/aparnadevi-hero.webp'],
   },
 ];

@@ -8,7 +8,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'Oracle',
     date: 'October 29, 2025',
     category: 'AI & Cloud',
-    image: '/assets/Certificates/OCI25GAIOCP.jpg',
+    image: '/assets/Certificates/OCI25GAIOCP.webp',
     pdf: '/assets/Certificates/oracle_pro.pdf',
     verifyUrl: 'https://catalog-education.oracle.com',
     tags: ['Generative AI', 'LLMs', 'OCI Cloud', 'Cert ID: 102936271OCI25GAIOCP'],
@@ -27,7 +27,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'Oracle',
     date: 'October 19, 2025',
     category: 'AI & Cloud',
-    image: '/assets/Certificates/OCI25AICFA.jpeg',
+    image: '/assets/Certificates/OCI25AICFA.webp',
     pdf: '/assets/Certificates/oracle.pdf',
     verifyUrl: 'https://catalog-education.oracle.com',
     tags: ['AI Foundations', 'Machine Learning', 'OCI Cloud', 'Cert ID: 102936271OCI25AICFA'],
@@ -46,7 +46,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'Oracle',
     date: 'July 21, 2026',
     category: 'Databases',
-    image: '/assets/Certificates/DBMS_eCertificate.png',
+    image: '/assets/Certificates/DBMS_eCertificate.webp',
     pdf: '/assets/Certificates/DBMS_eCertificate.pdf',
     tags: ['Oracle Database', 'SQL', 'Relational Models', 'Cert ID: 102936271ODB12COJA'],
     gradient: {
@@ -64,7 +64,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'Red Hat',
     date: 'July 13, 2026',
     category: 'DevOps & Systems',
-    image: '/assets/Certificates/ProfessionalCertificationDigitalCredentials20260721-8-ngckpa.png',
+    image: '/assets/Certificates/ProfessionalCertificationDigitalCredentials20260721-8-ngckpa.webp',
     pdf: '/assets/Certificates/ProfessionalCertificationDigitalCredentials20260721-8-ngckpa.pdf',
     verifyUrl: 'https://www.credly.com/badges/14d00882-70c2-4248-b799-c37d154cd8cb',
     tags: ['RHCSA', 'Red Hat Linux', 'SysAdmin', 'Credly Verified'],
@@ -83,7 +83,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'Technical Hub Private Limited',
     date: 'June 26, 2026',
     category: 'Web & Full Stack',
-    image: '/assets/Certificates/24B11CS514_Internship_certificate.png',
+    image: '/assets/Certificates/24B11CS514_Internship_certificate.webp',
     pdf: '/assets/Certificates/24B11CS514_Internship_certificate.pdf',
     tags: ['Full Stack Development', 'Technical Hub', 'Summer Internship', 'Web Engineering'],
     gradient: {
@@ -101,7 +101,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'Infosys Springboard',
     date: 'March 16, 2026',
     category: 'Web & Full Stack',
-    image: '/assets/Certificates/ReactJS.png',
+    image: '/assets/Certificates/ReactJS.webp',
     pdf: '/assets/Certificates/ReactJS.pdf',
     tags: ['React.js', 'Components', 'Virtual DOM', 'Frontend Architecture'],
     gradient: {
@@ -119,7 +119,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'Infosys Springboard',
     date: 'March 9, 2026',
     category: 'Databases',
-    image: '/assets/Certificates/MongoDB.png',
+    image: '/assets/Certificates/MongoDB.webp',
     pdf: '/assets/Certificates/MongoDB.pdf',
     tags: ['MongoDB', 'NoSQL', 'Aggregation', 'Document Schema'],
     gradient: {
@@ -137,7 +137,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'Infosys Springboard',
     date: 'February 20, 2026',
     category: 'Web & Full Stack',
-    image: '/assets/Certificates/ExpressJS.png',
+    image: '/assets/Certificates/ExpressJS.webp',
     pdf: '/assets/Certificates/ExpressJS.pdf',
     tags: ['Express.js', 'Node.js', 'REST APIs', 'Middleware'],
     gradient: {
@@ -155,7 +155,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'Coursera / Aditya University',
     date: 'March 3, 2026',
     category: 'AI & Cloud',
-    image: '/assets/Certificates/artificial-intelligence.png',
+    image: '/assets/Certificates/artificial-intelligence.webp',
     pdf: '/assets/Certificates/artificial-intelligence.pdf',
     tags: ['Artificial Intelligence', 'Coursera', 'Aditya University', 'Search & Logic'],
     gradient: {
@@ -173,7 +173,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'Cisco Networking Academy',
     date: '2026',
     category: 'Programming & DSA',
-    image: '/assets/Certificates/C--_Advanced_certificate_24b11cs514-adityauniversity-in_cbeeff7e-6be0-410d-8f91-5ab1abdb162f.png',
+    image: '/assets/Certificates/C--_Advanced_certificate_24b11cs514-adityauniversity-in_cbeeff7e-6be0-410d-8f91-5ab1abdb162f.webp',
     pdf: '/assets/Certificates/C--_Advanced_certificate_24b11cs514-adityauniversity-in_cbeeff7e-6be0-410d-8f91-5ab1abdb162f.pdf',
     verifyUrl: 'https://www.netacad.com',
     tags: ['C++', 'Advanced OOP', 'STL', 'Aditya University'],
@@ -192,7 +192,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'Cisco / C++ Institute',
     date: '2025',
     category: 'Programming & DSA',
-    image: '/assets/Certificates/C--_Essentials_1_certificate_24b11cs514-adityauniversity-in_0bafd690-d349-4844-8f94-463d2cac6ac3.png',
+    image: '/assets/Certificates/C--_Essentials_1_certificate_24b11cs514-adityauniversity-in_0bafd690-d349-4844-8f94-463d2cac6ac3.webp',
     pdf: '/assets/Certificates/C--_Essentials_1_certificate_24b11cs514-adityauniversity-in_0bafd690-d349-4844-8f94-463d2cac6ac3.pdf',
     tags: ['C++', 'Basics', 'Cisco NetAcad', 'Algorithms'],
     gradient: {
@@ -210,7 +210,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'Cisco / C++ Institute',
     date: '2025',
     category: 'Programming & DSA',
-    image: '/assets/Certificates/C--_Essentials_2_certificate_24b11cs514-adityauniversity-in_df07c4d8-879d-47d0-9473-f0a085b8001f.png',
+    image: '/assets/Certificates/C--_Essentials_2_certificate_24b11cs514-adityauniversity-in_df07c4d8-879d-47d0-9473-f0a085b8001f.webp',
     pdf: '/assets/Certificates/C--_Essentials_2_certificate_24b11cs514-adityauniversity-in_df07c4d8-879d-47d0-9473-f0a085b8001f.pdf',
     tags: ['C++', 'OOP Architecture', 'Inheritance', 'Polymorphism'],
     gradient: {
@@ -228,7 +228,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'Cisco / C++ Institute',
     date: '2025',
     category: 'Programming & DSA',
-    image: '/assets/Certificates/C_Essentials_1_certificate_24b11cs514-adityauniversity-in_048e4435-0a91-4746-bbe4-95f6f6de58fc (1).png',
+    image: '/assets/Certificates/C_Essentials_1_certificate_24b11cs514-adityauniversity-in_048e4435-0a91-4746-bbe4-95f6f6de58fc (1).webp',
     pdf: '/assets/Certificates/C_Essentials_1_certificate_24b11cs514-adityauniversity-in_048e4435-0a91-4746-bbe4-95f6f6de58fc (1).pdf',
     tags: ['C Programming', 'Pointers', 'Memory Allocation', 'Cisco'],
     gradient: {
@@ -246,7 +246,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'Cisco Networking Academy',
     date: '2025',
     category: 'DevOps & Systems',
-    image: '/assets/Certificates/Ethical_Hacker_certificate_24b11cs514-adityauniversity-in_ff34ca68-e19b-4cfc-b237-5960de6d2797.png',
+    image: '/assets/Certificates/Ethical_Hacker_certificate_24b11cs514-adityauniversity-in_ff34ca68-e19b-4cfc-b237-5960de6d2797.webp',
     pdf: '/assets/Certificates/Ethical_Hacker_certificate_24b11cs514-adityauniversity-in_ff34ca68-e19b-4cfc-b237-5960de6d2797.pdf',
     tags: ['Cybersecurity', 'Ethical Hacking', 'Penetration Testing', 'Cisco'],
     gradient: {
@@ -264,7 +264,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'Oracle Academy',
     date: 'October 10, 2025',
     category: 'Databases',
-    image: '/assets/Certificates/DBMS_certi.png',
+    image: '/assets/Certificates/DBMS_certi.webp',
     pdf: '/assets/Certificates/DBMS_certi.pdf',
     tags: ['Database Foundations', 'Oracle Academy', 'SQL Queries'],
     gradient: {
@@ -282,7 +282,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'Coursera / Aditya University',
     date: 'March 8, 2026',
     category: 'DevOps & Systems',
-    image: '/assets/Certificates/OScerti.png',
+    image: '/assets/Certificates/OScerti.webp',
     pdf: '/assets/Certificates/OScerti.pdf',
     tags: ['Operating Systems', 'Concurrency', 'Process Scheduling', 'Aditya University'],
     gradient: {
@@ -300,7 +300,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'Coursera / Aditya University',
     date: 'March 8, 2026',
     category: 'AI & Cloud',
-    image: '/assets/Certificates/QuantumComputing.png',
+    image: '/assets/Certificates/QuantumComputing.webp',
     pdf: '/assets/Certificates/QuantumComputing.pdf',
     tags: ['Quantum Computing', 'Qubits', 'Quantum Circuits', 'Coursera'],
     gradient: {
@@ -318,7 +318,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'IBM / Coursera',
     date: 'October 21, 2025',
     category: 'AI & Cloud',
-    image: '/assets/Certificates/pythonCerti.png',
+    image: '/assets/Certificates/pythonCerti.webp',
     pdf: '/assets/Certificates/pythonCerti.pdf',
     tags: ['IBM', 'Python', 'Pandas', 'NumPy', 'Data Analysis'],
     gradient: {
@@ -336,7 +336,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'HackerRank / Technical Hub',
     date: '2025',
     category: 'Programming & DSA',
-    image: '/assets/Certificates/python_basic certificate.png',
+    image: '/assets/Certificates/python_basic certificate.webp',
     pdf: '/assets/Certificates/python_basic certificate.pdf',
     tags: ['Python', 'Problem Solving', 'HackerRank Verified'],
     gradient: {
@@ -354,7 +354,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'Infosys Springboard',
     date: 'November 12, 2025',
     category: 'Programming & DSA',
-    image: '/assets/Certificates/1-22dbc95c-5546-49d6-8de7-d85859431ec8.png',
+    image: '/assets/Certificates/1-22dbc95c-5546-49d6-8de7-d85859431ec8.webp',
     pdf: '/assets/Certificates/1-22dbc95c-5546-49d6-8de7-d85859431ec8.pdf',
     tags: ['C++', 'Memory Management', 'Algorithms', 'Infosys'],
     gradient: {
@@ -372,7 +372,7 @@ export const certificationsData: GradientCarouselItem[] = [
     issuer: 'Infosys Springboard',
     date: 'November 12, 2025',
     category: 'Programming & DSA',
-    image: '/assets/Certificates/1-f603ce3f-364e-4dc0-aeb7-9753a05daee5.png',
+    image: '/assets/Certificates/1-f603ce3f-364e-4dc0-aeb7-9753a05daee5.webp',
     pdf: '/assets/Certificates/1-f603ce3f-364e-4dc0-aeb7-9753a05daee5.pdf',
     tags: ['Python', 'Data Structures', 'Infosys Springboard'],
     gradient: {

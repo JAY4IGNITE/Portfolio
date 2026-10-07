@@ -11,6 +11,12 @@ const port = process.env.PORT || 3000;
 const USERNAME_PATTERN = /^[a-zA-Z0-9_]{3,30}$/;
 const SOURCE_API_URL = 'https://codeindex.vercel.app/api/codechef';
 
+// Health / keep-alive endpoint — ping this every 5 min with an uptime monitor
+// (e.g. UptimeRobot, BetterStack) to prevent Render free-tier cold starts.
+app.get('/health', (_req, res) => {
+  res.status(200).json({ status: 'ok', uptime: process.uptime() });
+});
+
 // API route
 app.get('/api/codechef', async (req, res) => {
   const username = String(req.query?.username || '').trim();

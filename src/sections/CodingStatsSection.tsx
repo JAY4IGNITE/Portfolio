@@ -383,7 +383,7 @@ export const CodingStatsSection = () => {
                       className="p-3 bg-black/50 border border-[#D7E2EA]/10 rounded-2xl group-hover:scale-105 group-hover:border-[#B600A8]/20 transition-all"
                     >
                       <img
-                        src={`${import.meta.env.BASE_URL}assets/leetcode-icon.png`}
+                        src={`${import.meta.env.BASE_URL}assets/leetcode-icon.webp`}
                         alt="LeetCode"
                         className="w-10 h-10 object-contain"
                       />
