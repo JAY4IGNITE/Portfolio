@@ -1,5 +1,8 @@
 # 🚀 Jaya Sai Krishna Vasamsetti — Developer Portfolio
 
+[![Live Portfolio](https://img.shields.io/badge/Live_Portfolio-krishna--70gf.onrender.com-blue?style=for-the-badge&logo=render&logoColor=white)](https://krishna-70gf.onrender.com)
+[![GitHub](https://img.shields.io/badge/GitHub-JAY4IGNITE-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JAY4IGNITE)
+
 A modern, high-performance web developer portfolio built with **React 19**, **TypeScript**, **Vite**, **Tailwind CSS**, and interactive 3D WebGL animations via **GSAP**, **Lenis**, **Three.js**, and **OGL**.
 
 ---
@@ -184,4 +187,5 @@ The output bundle is generated inside the `dist/` directory, ready to be hosted 
 ## 👤 Author
 
 **Jaya Sai Krishna Vasamsetti**
+- Portfolio: [https://krishna-70gf.onrender.com](https://krishna-70gf.onrender.com)
 - GitHub: [@JAY4IGNITE](https://github.com/JAY4IGNITE)
